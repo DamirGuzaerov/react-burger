@@ -1,5 +1,6 @@
-import { Logo, BurgerIcon, ProfileIcon, ListIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import {Logo, BurgerIcon, ProfileIcon, ListIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import headerStyles from './app-header.module.css'
+
 export const AppHeader = () => {
     return (
         <header className={`${headerStyles.header}`}>

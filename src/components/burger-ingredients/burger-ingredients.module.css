@@ -1,0 +1,14 @@
+.tabs{
+    display: flex;
+}
+
+.burger-ingredients{
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    height: 100%;
+}
+
+.ingredients-groups{
+    overflow-y: scroll;
+}
