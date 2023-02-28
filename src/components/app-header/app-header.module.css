@@ -1,0 +1,45 @@
+.header{
+    background: var(--background);
+}
+
+.nav{
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 320px;
+}
+
+@media screen and (max-width:1921px) {
+    .nav{
+        margin: 0 auto;
+        padding: 0 60px;
+    }
+}
+
+.nav-list{
+    display: flex;
+    align-items: center;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item{
+    display: flex;
+    align-items: center;
+}
+
+.nav-item:last-child{
+    flex: 2;
+    justify-content: flex-end;
+}
+
+.nav-item *{
+    cursor: pointer;
+}
+
+.logo{
+    composes: nav-item;
+    justify-content: center;
+    flex: 3;
+}
