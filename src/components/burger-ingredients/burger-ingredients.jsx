@@ -8,7 +8,7 @@ const BurgerIngredients = ({ingredients}) => {
     const [currentTab, setCurrentTab] = useState('bun')
     return (
         <section className={burgerIngredientsStyles['burger-ingredients']}>
-            <div className={burgerIngredientsStyles.tabs}>
+            <div className={`${burgerIngredientsStyles.tabs} mb-10`}>
                 <Tab value="bun" active={currentTab === 'bun'} onClick={setCurrentTab}>
                 <span className={'text text_type_main-default'}>
                     Булки

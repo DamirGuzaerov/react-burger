@@ -1,7 +1,6 @@
 .main-wrapper{
   display: flex;
   flex-direction: column;
-  flex-flow: column;
 
   height: 100%;
 }
@@ -14,7 +13,6 @@
   display: flex;
   justify-content: space-between;
 
-  flex: 1 1 auto;
   overflow-y: hidden;
 }
 

@@ -12,3 +12,7 @@
 .ingredients-groups{
     overflow-y: scroll;
 }
+
+.ingredients-groups::-webkit-scrollbar-track{
+    margin-bottom: 40px;
+}
