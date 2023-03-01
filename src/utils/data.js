@@ -210,3 +210,97 @@ export const ingredients = [
         "__v":0
     }
 ]
+
+export const selectedIngredients = [
+    {
+        "_id":"60666c42cc7b410027a1a9b5",
+        "name":"Говяжий метеорит (отбивная)",
+        "price":3000,
+        "image":"https://code.s3.yandex.net/react/code/meat-04.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9b6",
+        "name":"Биокотлета из марсианской Магнолии",
+        "price":424,
+        "image":"https://code.s3.yandex.net/react/code/meat-01.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9b7",
+        "name":"Соус Spicy-X",
+        "price":90,
+        "image":"https://code.s3.yandex.net/react/code/sauce-02.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9b4",
+        "name":"Мясо бессмертных моллюсков Protostomia",
+        "price":1337,
+        "image":"https://code.s3.yandex.net/react/code/meat-02.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9b9",
+        "name":"Соус традиционный галактический",
+        "price":15,
+        "image":"https://code.s3.yandex.net/react/code/sauce-03.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9b8",
+        "name":"Соус фирменный Space Sauce",
+        "price":80,
+        "image":"https://code.s3.yandex.net/react/code/sauce-04.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9bc",
+        "name":"Плоды Фалленианского дерева",
+        "price":874,
+        "image":"https://code.s3.yandex.net/react/code/sp_1.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9bb",
+        "name":"Хрустящие минеральные кольца",
+        "price":300,
+        "image":"https://code.s3.yandex.net/react/code/mineral_rings.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9ba",
+        "name":"Соус с шипами Антарианского плоскоходца",
+        "price":88,
+        "image":"https://code.s3.yandex.net/react/code/sauce-01.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9bd",
+        "name":"Кристаллы марсианских альфа-сахаридов",
+        "price":762,
+        "image":"https://code.s3.yandex.net/react/code/core.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9be",
+        "name":"Мини-салат Экзо-Плантаго",
+        "price":4400,
+        "image":"https://code.s3.yandex.net/react/code/salad.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9b3",
+        "name":"Филе Люминесцентного тетраодонтимформа",
+        "price":988,
+        "image":"https://code.s3.yandex.net/react/code/meat-03.png",
+        "__v":0
+    },
+    {
+        "_id":"60666c42cc7b410027a1a9bf",
+        "name":"Сыр с астероидной плесенью",
+        "price":4142,
+        "image":"https://code.s3.yandex.net/react/code/cheese.png",
+        "__v":0
+    },
+]
