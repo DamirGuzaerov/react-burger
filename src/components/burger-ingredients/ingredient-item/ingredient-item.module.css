@@ -6,6 +6,14 @@
     max-width: 272px;
 
     overflow: hidden;
+
+    position: relative;
+}
+
+.counter{
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .price{

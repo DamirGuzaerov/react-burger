@@ -1,10 +1,15 @@
 import ingredientItemStyles from './ingredient-item.module.css';
 import PropTypes from "prop-types";
-import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {useState} from "react";
 
 export const IngredientItem = ({ingredient}) => {
+    const [count, setCount] = useState(0)
     return (
-        <section className={ingredientItemStyles['ingredient-item']}>
+        <section
+            className={ingredientItemStyles['ingredient-item']}
+            onClick={() => setCount(count + 1)}
+        >
             <img
                 className={'pl-4 pr-4'}
                 src={ingredient.image}
@@ -18,6 +23,9 @@ export const IngredientItem = ({ingredient}) => {
             <span className={`${ingredientItemStyles.name} text text_type_main-small`}>
                 {ingredient.name}
             </span>
+            {count > 0 &&
+                <Counter count={count} size="default" extraClass={ingredientItemStyles.counter}/>
+            }
         </section>
     )
 }
