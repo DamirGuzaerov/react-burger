@@ -1,5 +1,5 @@
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
-import {useState} from "react";
+import React, {useState} from "react";
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import PropTypes from "prop-types";
 import IngredientsGroup from "./ingredients-group/ingredients-group";

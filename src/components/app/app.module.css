@@ -13,6 +13,8 @@
   display: flex;
   justify-content: space-between;
 
+  column-gap: 40px;
+
   overflow-y: hidden;
 }
 
@@ -21,4 +23,15 @@
     margin: 0 auto;
     padding: 0 60px;
   }
+}
+
+.burger-ingredients{
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+}
+
+.burger-constructor{
+
 }
