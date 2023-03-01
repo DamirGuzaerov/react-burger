@@ -1,7 +1,8 @@
-import {Button, ConstructorElement, CurrencyIcon, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Button, ConstructorElement, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import burgerConstructorStyles from './burger-constructor.module.css'
 import {useEffect, useState} from "react";
+import ConstructorItems from "./constructor-items/constructor-items";
 
 const BurgerConstructor = ({ingredients}) => {
     const [totalPrice, setTotalPrice] = useState(0)
@@ -23,27 +24,10 @@ const BurgerConstructor = ({ingredients}) => {
                         text="Краторная булка N-200i (верх)"
                         price={200}
                         thumbnail='https://code.s3.yandex.net/react/code/bun-02.png'
-                        extraClass={burgerConstructorStyles['constructor-element']}
                     />
                 </li>
                 <li className={`${burgerConstructorStyles['sub-list']}`}>
-                    <ol className={`${burgerConstructorStyles['scroll-list']} custom-scroll`}>
-                        {ingredients.length > 0 && ingredients.map(ingredient => {
-                            return (
-                                <li className={burgerConstructorStyles['draggable-elements']}>
-                                    <i className={`${burgerConstructorStyles.icon} mr-2`}>
-                                        <DragIcon type="primary"/>
-                                    </i>
-                                    <ConstructorElement
-                                        key={ingredient._id}
-                                        text={ingredient.name}
-                                        price={ingredient.price}
-                                        thumbnail={ingredient.image}
-                                        extraClass={`${burgerConstructorStyles['constructor-element']}`}
-                                    />
-                                </li>)
-                        })}
-                    </ol>
+                    <ConstructorItems ingredients={ingredients}/>
                 </li>
                 <li className={'pl-8'}>
                     <ConstructorElement
@@ -52,7 +36,6 @@ const BurgerConstructor = ({ingredients}) => {
                         text="Краторная булка N-200i (низ)"
                         price={200}
                         thumbnail='https://code.s3.yandex.net/react/code/bun-02.png'
-                        extraClass={burgerConstructorStyles['constructor-element']}
                     />
                 </li>
             </ol>

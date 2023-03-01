@@ -30,32 +30,17 @@
     height: 33px;
 }
 
-.constructor-element{
-    max-height: 80px;
-
-    display: flex;
-    justify-content: space-between;
-}
-
-.scroll-list{
-    composes: list;
-    overflow-y: scroll;
-
-    height: 100%;
-    padding-right: 16px;
-}
-
 .sub-list{
     height: 100%;
 
     overflow-y: hidden;
 }
 
-.draggable-elements{
+.draggable-element{
     display: flex;
     align-items: center;
 }
 
-.draggable-elements .icon{
+.draggable-element .icon{
     cursor: pointer;
 }

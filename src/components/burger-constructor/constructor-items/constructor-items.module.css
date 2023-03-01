@@ -1,0 +1,23 @@
+.draggable-element{
+    display: flex;
+    align-items: center;
+}
+
+.draggable-element .icon{
+    cursor: pointer;
+}
+
+.scroll-list{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    overflow-y: scroll;
+
+    height: 100%;
+    padding-right: 16px;
+}
+
+.constructor-element{
+    display: grid;
+}
