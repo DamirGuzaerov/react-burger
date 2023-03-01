@@ -8,15 +8,14 @@ const ConstructorItems = ({ingredients}) => {
             {ingredients.length > 0 && ingredients.map(ingredient => {
                 return (
                     <li className={constructorItemsStyles['draggable-element']}>
-                        <i className={`${constructorItemsStyles.icon} mr-2`}>
+                        <div className={`${constructorItemsStyles.icon} mr-2`}>
                             <DragIcon type="primary"/>
-                        </i>
+                        </div>
                         <ConstructorElement
                             key={ingredient._id}
                             text={ingredient.name}
                             price={ingredient.price}
                             thumbnail={ingredient.image}
-                            extraClass={`${constructorItemsStyles['constructor-element']}`}
                         />
                     </li>)
             })}
