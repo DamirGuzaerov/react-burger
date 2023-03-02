@@ -2,7 +2,7 @@ import React from 'react';
 import appStyles from './app.module.css';
 import {AppHeader} from "../app-header/app-header";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import {ingredients, selectedIngredients} from "../../utils/data"
+import {ingredients} from "../../utils/data"
 import BurgerConstructor from "../burger-constructor/burger-constructor";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
                     <BurgerIngredients ingredients={ingredients}/>
                 </div>
                 <div className={'pt-25'}>
-                    <BurgerConstructor ingredients={selectedIngredients}/>
+                    <BurgerConstructor ingredients={ingredients}/>
                 </div>
             </main>
         </div>

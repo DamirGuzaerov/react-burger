@@ -1,6 +1,7 @@
 import constructorItemsStyles from "./constructor-items.module.css";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
+import {ingredientType} from "../../../utils/types";
 
 const ConstructorItems = ({ingredients}) => {
     return (
@@ -24,12 +25,7 @@ const ConstructorItems = ({ingredients}) => {
 }
 
 ConstructorItems.propTypes = {
-    ingredients: PropTypes.arrayOf(PropTypes.shape({
-        "_id": PropTypes.string.isRequired,
-        "name": PropTypes.string.isRequired,
-        "price": PropTypes.number.isRequired,
-        "image": PropTypes.string.isRequired,
-    })).isRequired
+    ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)).isRequired
 }
 
 export default ConstructorItems

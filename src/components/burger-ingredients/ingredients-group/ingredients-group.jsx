@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import {IngredientItem} from "../ingredient-item/ingredient-item";
 import ingredientsGroupStyles from "./ingredients-group.module.css";
+import {ingredientType} from "../../../utils/types";
 
 const IngredientsGroup = ({title, ingredients}) => {
     return (
@@ -17,20 +18,8 @@ const IngredientsGroup = ({title, ingredients}) => {
 }
 
 IngredientsGroup.propTypes = {
-    title: PropTypes.string, ingredients: PropTypes.arrayOf(PropTypes.shape({
-        "_id": PropTypes.string,
-        "name": PropTypes.string,
-        "type": PropTypes.string,
-        "proteins": PropTypes.number,
-        "fat": PropTypes.number,
-        "carbohydrates": PropTypes.number,
-        "calories": PropTypes.number,
-        "price": PropTypes.number,
-        "image": PropTypes.string,
-        "image_mobile": PropTypes.string,
-        "image_large": PropTypes.string,
-        "__v": PropTypes.number
-    }))
+    title: PropTypes.string,
+    ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)).isRequired
 }
 
 export default IngredientsGroup

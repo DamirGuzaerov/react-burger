@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import burgerConstructorStyles from './burger-constructor.module.css'
 import {useEffect, useState} from "react";
 import ConstructorItems from "./constructor-items/constructor-items";
+import {ingredientType} from "../../utils/types";
 
 const BurgerConstructor = ({ingredients}) => {
     const [totalPrice, setTotalPrice] = useState(0)
 
     useEffect(() => {
         setTotalPrice(ingredients.reduce((acc, curr) => {
-            console.log(acc)
             return acc + curr.price
         }, 0))
     }, [ingredients])
@@ -56,12 +56,7 @@ const BurgerConstructor = ({ingredients}) => {
 }
 
 BurgerConstructor.propTypes = {
-    ingredients: PropTypes.arrayOf(PropTypes.shape({
-        "_id": PropTypes.string.isRequired,
-        "name": PropTypes.string.isRequired,
-        "price": PropTypes.number.isRequired,
-        "image": PropTypes.string.isRequired,
-    }))
+    ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)).isRequired
 }
 
 export default BurgerConstructor
