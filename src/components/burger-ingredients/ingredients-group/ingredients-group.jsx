@@ -11,7 +11,11 @@ const IngredientsGroup = ({title, ingredients}) => {
             </h2>
             <div className={`${ingredientsGroupStyles['ingredients-list']} pl-4 pr-2 pt-6`}>
                 {ingredients.map(el => {
-                    return (<IngredientItem ingredient={el}/>)
+                    return (
+                        <IngredientItem
+                            key={el._id}
+                            ingredient={el}
+                        />)
                 })}
             </div>
         </div>)

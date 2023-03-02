@@ -8,12 +8,13 @@ const ConstructorItems = ({ingredients}) => {
         <ol className={`${constructorItemsStyles['scroll-list']} custom-scroll`}>
             {ingredients.length > 0 && ingredients.map(ingredient => {
                 return (
-                    <li className={constructorItemsStyles['draggable-element']}>
+                    <li
+                        key={ingredient._id}
+                        className={constructorItemsStyles['draggable-element']}>
                         <div className={`${constructorItemsStyles.icon} mr-2`}>
                             <DragIcon type="primary"/>
                         </div>
                         <ConstructorElement
-                            key={ingredient._id}
                             text={ingredient.name}
                             price={ingredient.price}
                             thumbnail={ingredient.image}
