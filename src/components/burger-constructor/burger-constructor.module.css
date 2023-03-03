@@ -1,0 +1,46 @@
+.burger-constructor{
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    overflow-y: hidden;
+}
+
+.total-price{
+    display: flex;
+    align-items: center;
+}
+
+.order{
+    display: flex;
+
+    justify-content: flex-end;
+    padding-bottom: 52px;
+}
+
+.total-price svg {
+    width: 33px;
+    height: 33px;
+}
+
+.sub-list{
+    height: 100%;
+
+    overflow-y: hidden;
+}
+
+.draggable-element{
+    display: flex;
+    align-items: center;
+}
+
+.draggable-element .icon{
+    cursor: pointer;
+}
