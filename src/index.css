@@ -29,6 +29,11 @@ html{
   height: 100%;
 }
 
+#react-modals{
+  position: relative;
+  z-index: 999;
+}
+
 ol,ul{
   list-style: none;
   padding: 0;
