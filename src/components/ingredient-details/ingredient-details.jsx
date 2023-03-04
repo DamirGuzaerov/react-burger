@@ -1,6 +1,7 @@
 import ingredientDetailsStyles from './ingredient-details.module.css'
 import {ingredientType} from "../../utils/types";
 import IngredientDetail from "./ingredient-detail/ingredient-detail";
+import PropTypes from "prop-types";
 
 const IngredientDetails = ({ingredient}) => {
     return (
@@ -15,7 +16,7 @@ const IngredientDetails = ({ingredient}) => {
             </h2>
             <ul className={ingredientDetailsStyles['ingredient-details']}>
                 <li className={ingredientDetailsStyles['ingredient-detail']}>
-                    <IngredientDetail title={'Калории, калл'} value={ingredient.calories}/>
+                    <IngredientDetail title={'Калории,калл'} value={ingredient.calories}/>
                 </li>
                 <li className={ingredientDetailsStyles['ingredient-detail']}>
                     <IngredientDetail title={'Белки,г'} value={ingredient.proteins}/>
@@ -32,7 +33,7 @@ const IngredientDetails = ({ingredient}) => {
 }
 
 IngredientDetails.propTypes = {
-    ingredient: ingredientType
+    ingredient: PropTypes.shape(ingredientType).isRequired
 }
 
 export default IngredientDetails
