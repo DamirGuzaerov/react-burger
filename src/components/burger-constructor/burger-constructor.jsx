@@ -1,21 +1,16 @@
 import {Button, ConstructorElement, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import burgerConstructorStyles from './burger-constructor.module.css'
-import {useCallback, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import ConstructorItems from "./constructor-items/constructor-items";
 import {ingredientType} from "../../utils/types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
+import {useDisclosure} from "../../utils/hooks/useDisclosure";
 
 const BurgerConstructor = ({ingredients}) => {
     const [totalPrice, setTotalPrice] = useState(0)
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const handleClose = useCallback(() => {
-        setIsModalOpen(false)
-    }, [])
-    const handleOpen = () => {
-        setIsModalOpen(true)
-    }
+    const {isOpen, open, close} = useDisclosure(false)
     useEffect(() => {
         setTotalPrice(ingredients.reduce((acc, curr) => {
             return acc + curr.price
@@ -59,7 +54,7 @@ const BurgerConstructor = ({ingredients}) => {
                         htmlType="button"
                         type="primary"
                         size="medium"
-                        onClick={handleOpen}
+                        onClick={open}
                     >
                 <span className={'text text_type_main-default'}>
                     Оформить заказ
@@ -68,8 +63,8 @@ const BurgerConstructor = ({ingredients}) => {
                 </div>
             </section>
             <Modal
-                isOpen={isModalOpen}
-                handleClose={handleClose}>
+                isOpen={isOpen}
+                handleClose={close}>
                 <OrderDetails/>
             </Modal>
         </>

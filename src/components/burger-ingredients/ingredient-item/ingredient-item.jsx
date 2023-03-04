@@ -1,26 +1,23 @@
 import ingredientItemStyles from './ingredient-item.module.css';
 import PropTypes from "prop-types";
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import React, {useCallback, useState} from "react";
+import {useState} from "react";
 import {ingredientType} from "../../../utils/types";
 import Modal from "../../modal/modal";
 import IngredientDetails from "../../ingredient-details/ingredient-details";
+import {useDisclosure} from "../../../utils/hooks/useDisclosure";
 
 export const IngredientItem = ({ingredient}) => {
     const [count, setCount] = useState(0)
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const handleClose = useCallback(() => {
-        setIsModalOpen(false)
-    }, [])
-    const handleOpen = () => {
-        setIsModalOpen(true)
-        setCount(count+1)
-    }
+    const {isOpen, open, close} = useDisclosure(false,
+        {
+            onOpen: () => setCount(count + 1),
+        })
     return (
         <>
             <section
                 className={ingredientItemStyles['ingredient-item']}
-                onClick={handleOpen}
+                onClick={open}
             >
                 <img
                     className={'pl-4 pr-4'}
@@ -41,8 +38,8 @@ export const IngredientItem = ({ingredient}) => {
             </section>
             <Modal
                 title={'Детали ингредиента'}
-                isOpen={isModalOpen}
-                handleClose={handleClose}>
+                isOpen={isOpen}
+                handleClose={close}>
                 <IngredientDetails
                     ingredient={ingredient}/>
             </Modal>
