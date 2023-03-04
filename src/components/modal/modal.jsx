@@ -24,7 +24,7 @@ const Modal = ({title, isOpen, handleClose, children}) => {
                         handleClose={handleClose}>
                         <div className={modalStyles['modal-wrapper']}>
                             <header className={modalStyles.header}>
-                                <h2 className={'text text_type_main-medium'}>
+                                <h2 className={'text text_type_main-large'}>
                                     {title}
                                 </h2>
                                 <div className={modalStyles['close-icon']}>
