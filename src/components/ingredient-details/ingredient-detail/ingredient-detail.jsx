@@ -12,7 +12,7 @@ const IngredientDetail = ({title, value}) => {
 
 IngredientDetail.propTypes = {
     title: PropTypes.string,
-    value: PropTypes.string
+    value: PropTypes.number
 }
 
 export default IngredientDetail
