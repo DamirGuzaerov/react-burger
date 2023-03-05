@@ -31,7 +31,7 @@ const BurgerConstructor = ({ingredients}) => {
                         />
                     </li>
                     <li className={`${burgerConstructorStyles['sub-list']}`}>
-                        <ConstructorItems ingredients={ingredients}/>
+                        <ConstructorItems ingredients={ingredients.filter(el => el.type !== 'bun')}/>
                     </li>
                     <li className={'pl-8'}>
                         <ConstructorElement
