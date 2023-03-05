@@ -3,17 +3,17 @@ import {useState} from "react";
 export const useDisclosure = (initialState = false, { onOpen, onClose } = {}) => {
     const [isOpen, setIsOpen] = useState(initialState);
 
-    const open = () => {
+    const open = (...args) => {
         setIsOpen(true);
         if (typeof onOpen === "function") {
-            onOpen();
+            onOpen(...args);
         }
     };
 
-    const close = () => {
+    const close = (...args) => {
         setIsOpen(false);
         if (typeof onClose === "function") {
-            onClose();
+            onClose(...args);
         }
     };
 

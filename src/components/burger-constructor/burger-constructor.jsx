@@ -62,11 +62,11 @@ const BurgerConstructor = ({ingredients}) => {
                     </Button>
                 </div>
             </section>
-            <Modal
-                isOpen={isOpen}
-                handleClose={close}>
-                <OrderDetails/>
-            </Modal>
+            {isOpen &&
+                <Modal
+                    handleClose={close}>
+                    <OrderDetails/>
+                </Modal>}
         </>
     )
 }

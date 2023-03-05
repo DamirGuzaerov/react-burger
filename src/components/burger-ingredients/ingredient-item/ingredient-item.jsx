@@ -3,21 +3,19 @@ import PropTypes from "prop-types";
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useState} from "react";
 import {ingredientType} from "../../../utils/types";
-import Modal from "../../modal/modal";
-import IngredientDetails from "../../ingredient-details/ingredient-details";
-import {useDisclosure} from "../../../utils/hooks/useDisclosure";
 
-export const IngredientItem = ({ingredient}) => {
+export const IngredientItem = ({ingredient, click}) => {
     const [count, setCount] = useState(0)
-    const {isOpen, open, close} = useDisclosure(false,
-        {
-            onOpen: () => setCount(count + 1),
-        })
+    const handleClick = () =>{
+        setCount(count+1)
+        if(typeof click === 'function')
+            click(ingredient)
+    }
     return (
         <>
             <section
                 className={ingredientItemStyles['ingredient-item']}
-                onClick={open}
+                onClick={handleClick}
             >
                 <img
                     className={'pl-4 pr-4'}
@@ -36,17 +34,11 @@ export const IngredientItem = ({ingredient}) => {
                     <Counter count={count} size="default" extraClass={ingredientItemStyles.counter}/>
                 }
             </section>
-            <Modal
-                title={'Детали ингредиента'}
-                isOpen={isOpen}
-                handleClose={close}>
-                <IngredientDetails
-                    ingredient={ingredient}/>
-            </Modal>
         </>
     )
 }
 
 IngredientItem.propTypes = {
-    ingredient: PropTypes.shape(ingredientType).isRequired
+    ingredient: PropTypes.shape(ingredientType).isRequired,
+    onClick: PropTypes.func
 }
