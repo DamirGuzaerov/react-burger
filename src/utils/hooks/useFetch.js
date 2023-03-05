@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 
 const BASE_URL = 'https://norma.nomoreparties.space/'
 const useFetch = (url, isLoadingInitial = true) => {
-    const [data, setData] = useState(null)
+    const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(isLoadingInitial)
 
     useEffect(() => {
@@ -11,14 +11,15 @@ const useFetch = (url, isLoadingInitial = true) => {
             try {
                 const response = await fetch(BASE_URL + url)
                 const result = await response.json()
-                setIsLoading(false)
                 if (response.ok) {
                     setData(result.data)
                 } else {
-                    console.error('fetch error')
+                    await Promise.reject(`Ошибка ${response.status}`);
                 }
             } catch (err) {
-                console.error('fetch error')
+                console.error('fetch error', err)
+            }
+            finally {
                 setIsLoading(false)
             }
         }

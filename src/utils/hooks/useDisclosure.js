@@ -1,11 +1,7 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 export const useDisclosure = (initialState = false, { onOpen, onClose } = {}) => {
     const [isOpen, setIsOpen] = useState(initialState);
-
-    useEffect(() => {
-        setIsOpen(initialState);
-    }, [initialState]);
 
     const open = () => {
         setIsOpen(true);
