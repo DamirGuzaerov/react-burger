@@ -3,7 +3,7 @@ import {IngredientItem} from "../ingredient-item/ingredient-item";
 import ingredientsGroupStyles from "./ingredients-group.module.css";
 import {ingredientType} from "../../../utils/types";
 
-const IngredientsGroup = ({title, ingredients}) => {
+const IngredientsGroup = ({title, ingredients,elementsClick}) => {
     return (
         <div className={`${ingredientsGroupStyles['ingredients-group']} pt-10 pb-10`}>
             <h2 className={'text text_type_main-medium'}>
@@ -13,6 +13,7 @@ const IngredientsGroup = ({title, ingredients}) => {
                 {ingredients.map(el => {
                     return (
                         <IngredientItem
+                            click={elementsClick}
                             key={el._id}
                             ingredient={el}
                         />)
@@ -23,7 +24,8 @@ const IngredientsGroup = ({title, ingredients}) => {
 
 IngredientsGroup.propTypes = {
     title: PropTypes.string,
-    ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)).isRequired
+    ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)).isRequired,
+    elementsClick: PropTypes.func
 }
 
 export default IngredientsGroup
