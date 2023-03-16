@@ -1,9 +1,9 @@
 import ingredientDetailsStyles from './ingredient-details.module.css'
-import {ingredientType} from "../../utils/types";
 import IngredientDetail from "./ingredient-detail/ingredient-detail";
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-const IngredientDetails = ({ingredient}) => {
+const IngredientDetails = () => {
+    const ingredient = useSelector(state => state.ingredient.currentIngredient)
     return (
         <div className={ingredientDetailsStyles.container}>
             <img
@@ -30,10 +30,6 @@ const IngredientDetails = ({ingredient}) => {
             </ul>
         </div>
     )
-}
-
-IngredientDetails.propTypes = {
-    ingredient: PropTypes.shape(ingredientType).isRequired
 }
 
 export default IngredientDetails

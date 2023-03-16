@@ -7,15 +7,20 @@ import {ingredientType} from "../../utils/types";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
+import {useDispatch} from "react-redux";
+import {removeCurrentIngredient, setCurrentIngredient} from "../../services/slices/ingredient";
 
 const BurgerIngredients = ({ingredients}) => {
     const [currentTab, setCurrentTab] = useState('bun')
-    const [selectedIngredient, setSelectedIngredient] = useState(null)
+    const dispatch = useDispatch()
     const {isOpen, open, close} = useDisclosure(false,
         {
             onOpen: (ingredient) => {
-                setSelectedIngredient(ingredient)
+                dispatch(setCurrentIngredient(ingredient))
             },
+            onClose: () => {
+                dispatch(removeCurrentIngredient())
+            }
         })
 
     return (
@@ -54,8 +59,7 @@ const BurgerIngredients = ({ingredients}) => {
                 <Modal
                     title={'Детали ингредиента'}
                     handleClose={close}>
-                    <IngredientDetails
-                        ingredient={selectedIngredient}/>
+                    <IngredientDetails/>
                 </Modal>}
         </>
     )
