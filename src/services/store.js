@@ -5,16 +5,14 @@ import ingredientReducer from "./slices/ingredient";
 import constructorReducer from "./slices/constructor";
 import orderReducer from "./slices/order";
 
-import thunk from "redux-thunk";
-
 const rootReducer = combineReducers({
+    burger_constructor: constructorReducer,
     ingredients: ingredientsReducer,
     ingredient: ingredientReducer,
-    constructor: constructorReducer,
     order: orderReducer,
 });
 export const mainStore = configureStore({
         reducer: rootReducer,
         devTools: true,
-        middleware: [thunk]
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     })

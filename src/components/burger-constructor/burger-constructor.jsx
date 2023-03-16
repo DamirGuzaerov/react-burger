@@ -7,10 +7,12 @@ import {ingredientType} from "../../utils/types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
+import {useSelector} from "react-redux";
 
-const BurgerConstructor = ({ingredients}) => {
+const BurgerConstructor = () => {
     const [totalPrice, setTotalPrice] = useState(0)
     const {isOpen, open, close} = useDisclosure(false)
+    const {bun, ingredients} = useSelector(state => state.burger_constructor)
     useEffect(() => {
         setTotalPrice(ingredients.reduce((acc, curr) => {
             return acc + curr.price
@@ -22,25 +24,25 @@ const BurgerConstructor = ({ingredients}) => {
             <section className={burgerConstructorStyles['burger-constructor']}>
                 <ol className={`${burgerConstructorStyles.list} pl-4`}>
                     <li className={'pl-8'}>
-                        <ConstructorElement
+                        {bun && <ConstructorElement
                             type="top"
                             isLocked={true}
-                            text="Краторная булка N-200i (верх)"
-                            price={200}
-                            thumbnail='https://code.s3.yandex.net/react/code/bun-02.png'
-                        />
+                            text={`${bun.name} (верх)`}
+                            price={bun.price}
+                            thumbnail={`${bun.image}`}
+                        />}
                     </li>
                     <li className={`${burgerConstructorStyles['sub-list']}`}>
                         <ConstructorItems ingredients={ingredients.filter(el => el.type !== 'bun')}/>
                     </li>
                     <li className={'pl-8'}>
-                        <ConstructorElement
+                        {bun && <ConstructorElement
                             type="bottom"
                             isLocked={true}
-                            text="Краторная булка N-200i (низ)"
-                            price={200}
-                            thumbnail='https://code.s3.yandex.net/react/code/bun-02.png'
-                        />
+                            text={`${bun.name} (низ)`}
+                            price={bun.price}
+                            thumbnail={`${bun.image}`}
+                        />}
                     </li>
                 </ol>
                 <div className={`${burgerConstructorStyles.order} pt-10`}>
