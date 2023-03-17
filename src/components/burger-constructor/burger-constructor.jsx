@@ -8,6 +8,7 @@ import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
 import {useSelector} from "react-redux";
+import ripple from '../../images/ripple.svg'
 
 const BurgerConstructor = () => {
     const [totalPrice, setTotalPrice] = useState(0)
@@ -24,25 +25,35 @@ const BurgerConstructor = () => {
             <section className={burgerConstructorStyles['burger-constructor']}>
                 <ol className={`${burgerConstructorStyles.list} pl-4`}>
                     <li className={'pl-8'}>
-                        {bun && <ConstructorElement
+                        {bun ? <ConstructorElement
                             type="top"
                             isLocked={true}
                             text={`${bun.name} (верх)`}
                             price={bun.price}
                             thumbnail={`${bun.image}`}
-                        />}
+                        /> : <ConstructorElement
+                            type="top"
+                            isLocked={true}
+                            price={0}
+                            text={'Перетащите булочку сюда (верх)'}
+                            thumbnail={ripple}/>}
                     </li>
                     <li className={`${burgerConstructorStyles['sub-list']}`}>
                         <ConstructorItems ingredients={ingredients.filter(el => el.type !== 'bun')}/>
                     </li>
                     <li className={'pl-8'}>
-                        {bun && <ConstructorElement
+                        {bun ? <ConstructorElement
                             type="bottom"
                             isLocked={true}
-                            text={`${bun.name} (низ)`}
+                            text={`${bun.name} (верх)`}
                             price={bun.price}
                             thumbnail={`${bun.image}`}
-                        />}
+                        /> : <ConstructorElement
+                            type="bottom"
+                            isLocked={true}
+                            price={0}
+                            text={'Перетащите булочку сюда (верх)'}
+                            thumbnail={ripple}/>}
                     </li>
                 </ol>
                 <div className={`${burgerConstructorStyles.order} pt-10`}>
