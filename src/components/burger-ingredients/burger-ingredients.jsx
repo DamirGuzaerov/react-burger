@@ -1,5 +1,5 @@
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import PropTypes from "prop-types";
 import IngredientsGroup from "./ingredients-group/ingredients-group";
@@ -12,6 +12,13 @@ import {removeCurrentIngredient, setCurrentIngredient} from "../../services/slic
 
 const BurgerIngredients = ({ingredients}) => {
     const [currentTab, setCurrentTab] = useState('bun')
+
+    const scrollRef = useRef(null)
+
+    const firstTitleRef = useRef(null)
+    const secondTitleRef = useRef(null)
+    const thirdTitleRef = useRef(null)
+
     const dispatch = useDispatch()
     const {isOpen, open, close} = useDisclosure(false,
         {
@@ -23,36 +30,84 @@ const BurgerIngredients = ({ingredients}) => {
             }
         })
 
+    const handleTabClick = (ref) => {
+        ref.current?.scrollIntoView({behavior: 'smooth'});
+        setCurrentTab()
+    }
+    useEffect(() => {
+        let elem = scrollRef.current
+        const defineElementPosition = (ref) => {
+            let elem = ref.current
+            if (ref && elem) {
+                return elem.getBoundingClientRect()
+            }
+        }
+        const defineActiveTab = () => {
+            if (scrollRef && elem) {
+                let elemTop = elem.getBoundingClientRect().top
+                let firstTitleDistance = Math.abs(elemTop - defineElementPosition(firstTitleRef).top)
+                let secondTitleDistance = Math.abs(elemTop - defineElementPosition(secondTitleRef).top)
+                let thirdTitleDistance = Math.abs(elemTop - defineElementPosition(thirdTitleRef).top)
+                let minDistance = Math.min(firstTitleDistance, secondTitleDistance, thirdTitleDistance)
+                return minDistance === thirdTitleDistance ? setCurrentTab('main')
+                    : minDistance === secondTitleDistance ? setCurrentTab('sauce')
+                        : minDistance === firstTitleDistance ? setCurrentTab('bun')
+                            : null
+            }
+        }
+        if (scrollRef && elem) {
+            elem.addEventListener('scroll', defineActiveTab)
+        }
+        return () => {
+            elem.removeEventListener("scroll", defineActiveTab, false);
+        };
+    }, [])
+
     return (
         <>
             <section className={burgerIngredientsStyles['burger-ingredients']}>
                 <div className={`${burgerIngredientsStyles.tabs} mb-10`}>
-                    <Tab value="bun" active={currentTab === 'bun'} onClick={setCurrentTab}>
+                    <Tab value="bun" active={currentTab === 'bun'} onClick={() => {
+                        handleTabClick(firstTitleRef);
+                        setCurrentTab('bun')
+                    }}>
                 <span className={'text text_type_main-default'}>
                     Булки
                 </span>
                     </Tab>
-                    <Tab value="sauce" active={currentTab === 'sauce'} onClick={setCurrentTab}>
+                    <Tab value="sauce" active={currentTab === 'sauce'} onClick={() => {
+                        handleTabClick(secondTitleRef);
+                        setCurrentTab('sauce')
+                    }}>
                 <span className={'text text_type_main-default'}>
                     Соусы
                 </span>
                     </Tab>
-                    <Tab value="main" active={currentTab === 'main'} onClick={setCurrentTab}>
+                    <Tab value="main" active={currentTab === 'main'} onClick={() => {
+                        handleTabClick(thirdTitleRef);
+                        setCurrentTab('main')
+                    }}>
                 <span className={'text text_type_main-default'}>
                     Начинки
                 </span>
                     </Tab>
                 </div>
-                <div className={`${burgerIngredientsStyles['ingredients-groups']} custom-scroll`}>
-                    <IngredientsGroup title='Булки'
-                                      elementsClick={open}
-                                      ingredients={ingredients.filter(el => el.type === 'bun')}/>
-                    <IngredientsGroup title='Соусы'
-                                      elementsClick={open}
-                                      ingredients={ingredients.filter(el => el.type === 'sauce')}/>
-                    <IngredientsGroup title='Начинка'
-                                      elementsClick={open}
-                                      ingredients={ingredients.filter(el => el.type === 'main')}/>
+                <div ref={scrollRef} className={`${burgerIngredientsStyles['ingredients-groups']} custom-scroll`}>
+                    <IngredientsGroup
+                        ref={firstTitleRef}
+                        title='Булки'
+                        elementsClick={open}
+                        ingredients={ingredients.filter(el => el.type === 'bun')}/>
+                    <IngredientsGroup
+                        ref={secondTitleRef}
+                        title='Соусы'
+                        elementsClick={open}
+                        ingredients={ingredients.filter(el => el.type === 'sauce')}/>
+                    <IngredientsGroup
+                        ref={thirdTitleRef}
+                        title='Начинка'
+                        elementsClick={open}
+                        ingredients={ingredients.filter(el => el.type === 'main')}/>
                 </div>
             </section>
             {isOpen &&
