@@ -44,3 +44,9 @@
 .draggable-element .icon{
     cursor: pointer;
 }
+
+.drag-over {
+    border: 2px aqua dashed;
+    border-radius: 10px;
+    min-height: 20px;
+}

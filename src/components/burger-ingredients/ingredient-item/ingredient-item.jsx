@@ -1,19 +1,36 @@
 import ingredientItemStyles from './ingredient-item.module.css';
 import PropTypes from "prop-types";
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useState} from "react";
 import {ingredientType} from "../../../utils/types";
+import {useDrag} from "react-dnd";
+import {useEffect, useState} from "react";
 
 export const IngredientItem = ({ingredient, click}) => {
-    const [count, setCount] = useState(0)
-    const handleClick = () =>{
-        setCount(count+1)
-        if(typeof click === 'function')
+    const [count,setCount] = useState(0)
+
+    const [{didDrop}, dragRef] = useDrag({
+        type: "ingredient",
+        item: ingredient,
+        collect: monitor => ({
+            didDrop: monitor.getItem()?._id === ingredient._id && monitor.didDrop()
+        })
+    });
+
+    const handleClick = () => {
+        if (typeof click === 'function')
             click(ingredient)
     }
+
+    useEffect(()=>{
+        if(didDrop){
+            setCount(count+1)
+        }
+    },[count, didDrop])
+
     return (
         <>
             <section
+                ref={dragRef}
                 className={ingredientItemStyles['ingredient-item']}
                 onClick={handleClick}
             >

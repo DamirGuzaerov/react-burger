@@ -13,10 +13,13 @@ export const constructorSlice = createSlice({
         },
         setBun: (state,action) => {
             state.bun = action.payload
+        },
+        addIngredient: (state, action) => {
+            state.ingredients.push(action.payload)
         }
     }
 })
 
-export const {sortIngredient, setBun} = constructorSlice.actions
+export const {sortIngredient, setBun, addIngredient} = constructorSlice.actions
 
 export default constructorSlice.reducer

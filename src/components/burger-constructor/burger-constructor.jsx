@@ -7,13 +7,27 @@ import {ingredientType} from "../../utils/types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import ripple from '../../images/ripple.svg'
+import {useDrop} from "react-dnd";
+import {addIngredient} from "../../services/slices/constructor";
 
 const BurgerConstructor = () => {
     const [totalPrice, setTotalPrice] = useState(0)
     const {isOpen, open, close} = useDisclosure(false)
     const {bun, ingredients} = useSelector(state => state.burger_constructor)
+    const dispatch = useDispatch()
+
+    const [{isOver},dropRef] = useDrop({
+        accept: 'ingredient',
+        collect: (monitor) => ({
+            isOver: monitor.isOver()
+        }),
+        drop(item){
+            dispatch(addIngredient(item))
+        }
+    })
+
     useEffect(() => {
         setTotalPrice(ingredients.reduce((acc, curr) => {
             return acc + curr.price
@@ -22,7 +36,9 @@ const BurgerConstructor = () => {
 
     return (
         <>
-            <section className={burgerConstructorStyles['burger-constructor']}>
+            <section
+                ref={dropRef}
+                className={burgerConstructorStyles['burger-constructor']}>
                 <ol className={`${burgerConstructorStyles.list} pl-4`}>
                     <li className={'pl-8'}>
                         {bun ? <ConstructorElement
@@ -38,7 +54,7 @@ const BurgerConstructor = () => {
                             text={'Перетащите булочку сюда (верх)'}
                             thumbnail={ripple}/>}
                     </li>
-                    <li className={`${burgerConstructorStyles['sub-list']}`}>
+                    <li className={`${burgerConstructorStyles['sub-list']} ${isOver? burgerConstructorStyles['drag-over']: ''}`}>
                         <ConstructorItems ingredients={ingredients.filter(el => el.type !== 'bun')}/>
                     </li>
                     <li className={'pl-8'}>
