@@ -3,9 +3,7 @@
     align-items: center;
 }
 
-.draggable-element .icon{
-    cursor: pointer;
-}
+
 
 .scroll-list{
     display: flex;
