@@ -1,7 +1,7 @@
 import {Button, ConstructorElement, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import burgerConstructorStyles from './burger-constructor.module.css'
-import {useEffect, useState} from "react";
+import {useMemo} from "react";
 import ConstructorItems from "./constructor-items/constructor-items";
 import {ingredientType} from "../../utils/types";
 import Modal from "../modal/modal";
@@ -13,10 +13,15 @@ import {useDrop} from "react-dnd";
 import {addIngredient} from "../../services/slices/constructor";
 
 const BurgerConstructor = () => {
-    const [totalPrice, setTotalPrice] = useState(0)
     const {isOpen, open, close} = useDisclosure(false)
     const {bun, ingredients} = useSelector(state => state.burger_constructor)
     const dispatch = useDispatch()
+
+    const totalPrice = useMemo(()=> {
+        return ingredients.reduce((acc, curr) => {
+            return acc + curr.price
+        }, bun? 2*bun.price: 0)
+    }, [ingredients,bun])
 
     const [{isOver},dropRef] = useDrop({
         accept: 'ingredient',
@@ -27,12 +32,6 @@ const BurgerConstructor = () => {
             dispatch(addIngredient(item))
         }
     })
-
-    useEffect(() => {
-        setTotalPrice(ingredients.reduce((acc, curr) => {
-            return acc + curr.price
-        }, 0))
-    }, [ingredients])
 
     return (
         <>
