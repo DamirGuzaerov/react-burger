@@ -10,41 +10,36 @@ import {useRef} from "react";
 const ConstructorItem = ({ingredient, index, handleMove}) => {
     const dispatch = useDispatch()
     const ref = useRef()
-    const [, dropRef] = useDrop({
-        accept: 'sortable-ingredient',
-        hover(item, monitor) {
-            if (!ref.current) {
-                return
-            }
-            const dragIndex = item.index
-            const hoverIndex = index
-            if (dragIndex === hoverIndex) {
-                return
-            }
-            const hoverBoundingRect = ref.current?.getBoundingClientRect()
-            const hoverMiddleY =
-                (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-            const clientOffset = monitor.getClientOffset()
-            const hoverClientY = clientOffset.y - hoverBoundingRect.top
-            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-                return
-            }
-            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-                return
-            }
-            handleMove(dragIndex, hoverIndex)
-            item.index = hoverIndex
-        },
-    })
 
     const [{isDragging}, dragRef] = useDrag({
         type: 'sortable-ingredient',
         item: {...ingredient, index: index},
         collect: monitor => ({
-            isDragging: monitor.isDragging()
+            isDragging: monitor.isDragging(),
         })
     })
 
+    const [, dropRef] = useDrop({
+        accept: 'sortable-ingredient',
+        hover(item, monitor) {
+            if (!ref.current) return;
+            const dragIndex = item.index
+            const hoverIndex = index
+            if (dragIndex === hoverIndex) return;
+
+            const hoverBoundingRect = ref.current?.getBoundingClientRect()
+            const hoverMiddleY =
+                (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+            const clientOffset = monitor.getClientOffset()
+            const hoverClientY = clientOffset.y - hoverBoundingRect.top
+            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) return;
+
+            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) return;
+
+            handleMove(dragIndex, hoverIndex)
+            item.index = hoverIndex
+        },
+    })
 
     const handleClose = (key) => {
         dispatch(deleteIngredient(key))

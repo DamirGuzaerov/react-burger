@@ -9,26 +9,34 @@ import OrderDetails from "../order-details/order-details";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
 import {useDispatch, useSelector} from "react-redux";
 import ripple from '../../images/ripple.svg'
+import loader from '../../images/loader.svg'
 import {useDrop} from "react-dnd";
 import {addIngredient} from "../../services/slices/constructor";
+import {addOrder} from "../../services/thunks/order";
 
 const BurgerConstructor = () => {
     const {isOpen, open, close} = useDisclosure(false)
     const {bun, ingredients} = useSelector(state => state.burger_constructor)
+    const {requested, success, failed} = useSelector(state => state.order)
     const dispatch = useDispatch()
 
-    const totalPrice = useMemo(()=> {
+    const handleClick = () => {
+        dispatch(addOrder({bun: bun, ingredients: ingredients}))
+        open()
+    }
+
+    const totalPrice = useMemo(() => {
         return ingredients.reduce((acc, curr) => {
             return acc + curr.price
-        }, bun? 2*bun.price: 0)
-    }, [ingredients,bun])
+        }, bun ? 2 * bun.price : 0)
+    }, [ingredients, bun])
 
-    const [{isOver},dropRef] = useDrop({
+    const [{isOver}, dropRef] = useDrop({
         accept: 'ingredient',
         collect: (monitor) => ({
             isOver: monitor.isOver()
         }),
-        drop(item){
+        drop(item) {
             dispatch(addIngredient(item))
         }
     })
@@ -53,21 +61,21 @@ const BurgerConstructor = () => {
                             text={'Перетащите булочку сюда (верх)'}
                             thumbnail={ripple}/>}
                     </li>
-                    <li className={`${burgerConstructorStyles['sub-list']} ${isOver? burgerConstructorStyles['drag-over']: ''}`}>
+                    <li className={`${burgerConstructorStyles['sub-list']} ${isOver ? burgerConstructorStyles['drag-over'] : ''}`}>
                         <ConstructorItems ingredients={ingredients.filter(el => el.type !== 'bun')}/>
                     </li>
                     <li className={'pl-8'}>
                         {bun ? <ConstructorElement
                             type="bottom"
                             isLocked={true}
-                            text={`${bun.name} (верх)`}
+                            text={`${bun.name} (низ)`}
                             price={bun.price}
                             thumbnail={`${bun.image}`}
                         /> : <ConstructorElement
                             type="bottom"
                             isLocked={true}
                             price={0}
-                            text={'Перетащите булочку сюда (верх)'}
+                            text={'Перетащите булочку сюда (низ)'}
                             thumbnail={ripple}/>}
                     </li>
                 </ol>
@@ -79,18 +87,21 @@ const BurgerConstructor = () => {
                         <CurrencyIcon type={'primary'}/>
                     </div>
                     <Button
+                        extraClass={burgerConstructorStyles.button}
                         htmlType="button"
                         type="primary"
                         size="medium"
-                        onClick={open}
+                        onClick={handleClick}
                     >
                 <span className={'text text_type_main-default'}>
                     Оформить заказ
                 </span>
+                        {requested && <img className={`${burgerConstructorStyles.loader} pl-10`} src={loader} alt="loading..."/>}
                     </Button>
                 </div>
+                {failed && <p className={'text text_color_error text_type_main-default'}>Ошибка в заказе</p>}
             </section>
-            {isOpen &&
+            {isOpen && success &&
                 <Modal
                     handleClose={close}>
                     <OrderDetails/>
