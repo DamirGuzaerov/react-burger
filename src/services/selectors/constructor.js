@@ -1,0 +1,1 @@
+export const getItemsCount = (state,id) => state.burger_constructor.ingredients.filter(el=>el._id === id).length

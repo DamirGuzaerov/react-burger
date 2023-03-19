@@ -3,29 +3,23 @@ import PropTypes from "prop-types";
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ingredientType} from "../../../utils/types";
 import {useDrag} from "react-dnd";
-import {useEffect, useState} from "react";
+import { v4 as uuid4 } from 'uuid';
+import {useSelector} from "react-redux";
+import {getItemsCount} from "../../../services/selectors/constructor";
 
 export const IngredientItem = ({ingredient, click}) => {
-    const [count,setCount] = useState(0)
 
-    const [{didDrop}, dragRef] = useDrag({
+    const count = useSelector(state => getItemsCount(state,ingredient._id))
+
+    const [, dragRef] = useDrag({
         type: "ingredient",
-        item: ingredient,
-        collect: monitor => ({
-            didDrop: monitor.getItem()?._id === ingredient._id && monitor.didDrop()
-        })
+        item: {...ingredient, key: uuid4()},
     });
 
     const handleClick = () => {
         if (typeof click === 'function')
             click(ingredient)
     }
-
-    useEffect(()=>{
-        if(didDrop){
-            setCount(count+1)
-        }
-    },[count, didDrop])
 
     return (
         <>

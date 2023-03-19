@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 export const ingredientType = {
-    "_id": PropTypes.string,
+    "_id": PropTypes.string.isRequired,
     "name": PropTypes.string,
     "type": PropTypes.string,
     "proteins": PropTypes.number,
@@ -12,5 +12,6 @@ export const ingredientType = {
     "image": PropTypes.string,
     "image_mobile": PropTypes.string,
     "image_large": PropTypes.string,
-    "__v": PropTypes.number
+    "__v": PropTypes.number,
+    'key': PropTypes.string
 }

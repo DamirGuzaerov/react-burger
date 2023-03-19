@@ -8,18 +8,21 @@ export const constructorSlice = createSlice({
     name: 'constructor',
     initialState,
     reducers: {
-        sortIngredients: (state,action) => {
+        sortIngredients: (state, action) => {
             state.ingredients = action.payload
         },
-        setBun: (state,action) => {
+        setBun: (state, action) => {
             state.bun = action.payload
         },
         addIngredient: (state, action) => {
             state.ingredients.push(action.payload)
-        }
+        },
+        deleteIngredient: (state, action) => {
+            state.ingredients = state.ingredients.filter(el => el.key !== action.payload)
+        },
     }
 })
 
-export const {sortIngredient, setBun, addIngredient} = constructorSlice.actions
+export const {sortIngredient, setBun, addIngredient, deleteIngredient} = constructorSlice.actions
 
 export default constructorSlice.reducer
