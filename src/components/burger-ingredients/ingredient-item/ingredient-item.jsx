@@ -9,7 +9,7 @@ import {getItemsCount} from "../../../services/selectors/constructor";
 
 export const IngredientItem = ({ingredient, click}) => {
 
-    const count = useSelector(state => getItemsCount(state,ingredient._id))
+    const count = useSelector(state => getItemsCount(state,{id: ingredient._id, type : ingredient.type}))
 
     const [, dragRef] = useDrag({
         type: "ingredient",

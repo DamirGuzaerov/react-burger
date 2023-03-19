@@ -15,7 +15,10 @@ export const constructorSlice = createSlice({
             state.bun = action.payload
         },
         addIngredient: (state, action) => {
-            state.ingredients.push(action.payload)
+            if(action.payload.type === 'bun')
+                state.bun = action.payload
+            else
+                state.ingredients.push(action.payload)
         },
         deleteIngredient: (state, action) => {
             state.ingredients = state.ingredients.filter(el => el.key !== action.payload)
