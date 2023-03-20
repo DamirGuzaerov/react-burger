@@ -14,9 +14,6 @@ export const constructorSlice = createSlice({
                 0,
                 state.ingredients.splice(action.payload.fromIndex, 1)[0]);
         },
-        setBun: (state, action) => {
-            state.bun = action.payload
-        },
         addIngredient: (state, action) => {
             if (action.payload.type === 'bun')
                 state.bun = action.payload
@@ -26,9 +23,14 @@ export const constructorSlice = createSlice({
         deleteIngredient: (state, action) => {
             state.ingredients = state.ingredients.filter(el => el.key !== action.payload)
         },
+        clearConstructor: (state) => {
+            console.log('clear')
+            state.bun = initialState.bun
+            state.ingredients = initialState.ingredients
+        }
     }
 })
 
-export const {sortIngredients, setBun, addIngredient, deleteIngredient} = constructorSlice.actions
+export const {sortIngredients, addIngredient, deleteIngredient, clearConstructor} = constructorSlice.actions
 
 export default constructorSlice.reducer

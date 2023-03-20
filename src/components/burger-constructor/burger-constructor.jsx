@@ -13,11 +13,10 @@ import {addIngredient} from "../../services/slices/constructor";
 import {addOrder} from "../../services/thunks/order";
 
 const BurgerConstructor = () => {
-    const {isOpen, open, close} = useDisclosure(false)
     const {bun, ingredients} = useSelector(state => state.burger_constructor)
     const {requested, success, failed} = useSelector(state => state.order)
     const dispatch = useDispatch()
-
+    const {isOpen, open, close} = useDisclosure(false)
     const handleClick = () => {
         dispatch(addOrder({bun: bun, ingredients: ingredients}))
         open()
@@ -94,7 +93,8 @@ const BurgerConstructor = () => {
                 <span className={'text text_type_main-default'}>
                     Оформить заказ
                 </span>
-                        {requested && <img className={`${burgerConstructorStyles.loader} pl-10`} src={loader} alt="loading..."/>}
+                        {requested &&
+                            <img className={`${burgerConstructorStyles.loader} pl-10`} src={loader} alt="loading..."/>}
                     </Button>
                 </div>
                 {failed && <p className={'text text_color_error text_type_main-default'}>Ошибка в заказе</p>}
