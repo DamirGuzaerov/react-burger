@@ -2,11 +2,12 @@ import PropTypes from "prop-types";
 import {IngredientItem} from "../ingredient-item/ingredient-item";
 import ingredientsGroupStyles from "./ingredients-group.module.css";
 import {ingredientType} from "../../../utils/types";
+import {forwardRef} from "react";
 
-const IngredientsGroup = ({title, ingredients,elementsClick}) => {
+const IngredientsGroup = forwardRef(({title, ingredients,elementsClick},forwardRef) => {
     return (
         <div className={`${ingredientsGroupStyles['ingredients-group']} pt-10 pb-10`}>
-            <h2 className={'text text_type_main-medium'}>
+            <h2 className={'text text_type_main-medium'} ref={forwardRef}>
                 {title}
             </h2>
             <div className={`${ingredientsGroupStyles['ingredients-list']} pl-4 pr-2 pt-6`}>
@@ -20,7 +21,7 @@ const IngredientsGroup = ({title, ingredients,elementsClick}) => {
                 })}
             </div>
         </div>)
-}
+})
 
 IngredientsGroup.propTypes = {
     title: PropTypes.string,

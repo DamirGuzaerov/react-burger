@@ -1,46 +1,79 @@
 import {Button, ConstructorElement, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import burgerConstructorStyles from './burger-constructor.module.css'
-import {useEffect, useState} from "react";
+import {useMemo} from "react";
 import ConstructorItems from "./constructor-items/constructor-items";
-import {ingredientType} from "../../utils/types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
+import {useDispatch, useSelector} from "react-redux";
+import ripple from '../../images/ripple.svg'
+import loader from '../../images/loader.svg'
+import {useDrop} from "react-dnd";
+import {addIngredient} from "../../services/slices/constructor";
+import {addOrder} from "../../services/thunks/order";
 
-const BurgerConstructor = ({ingredients}) => {
-    const [totalPrice, setTotalPrice] = useState(0)
+const BurgerConstructor = () => {
+    const {bun, ingredients} = useSelector(state => state.burger_constructor)
+    const {requested, success, failed} = useSelector(state => state.order)
+    const dispatch = useDispatch()
     const {isOpen, open, close} = useDisclosure(false)
-    useEffect(() => {
-        setTotalPrice(ingredients.reduce((acc, curr) => {
+    const handleClick = () => {
+        dispatch(addOrder({bun: bun, ingredients: ingredients}))
+        open()
+    }
+
+    const totalPrice = useMemo(() => {
+        return ingredients.reduce((acc, curr) => {
             return acc + curr.price
-        }, 0))
-    }, [ingredients])
+        }, bun ? 2 * bun.price : 0)
+    }, [ingredients, bun])
+
+    const [{isOver}, dropRef] = useDrop({
+        accept: 'ingredient',
+        collect: (monitor) => ({
+            isOver: monitor.isOver()
+        }),
+        drop(item) {
+            dispatch(addIngredient(item))
+        }
+    })
 
     return (
         <>
-            <section className={burgerConstructorStyles['burger-constructor']}>
+            <section
+                ref={dropRef}
+                className={burgerConstructorStyles['burger-constructor']}>
                 <ol className={`${burgerConstructorStyles.list} pl-4`}>
                     <li className={'pl-8'}>
-                        <ConstructorElement
+                        {bun ? <ConstructorElement
                             type="top"
                             isLocked={true}
-                            text="Краторная булка N-200i (верх)"
-                            price={200}
-                            thumbnail='https://code.s3.yandex.net/react/code/bun-02.png'
-                        />
+                            text={`${bun.name} (верх)`}
+                            price={bun.price}
+                            thumbnail={`${bun.image}`}
+                        /> : <ConstructorElement
+                            type="top"
+                            isLocked={true}
+                            price={0}
+                            text={'Перетащите булочку сюда (верх)'}
+                            thumbnail={ripple}/>}
                     </li>
-                    <li className={`${burgerConstructorStyles['sub-list']}`}>
+                    <li className={`${burgerConstructorStyles['sub-list']} ${isOver ? burgerConstructorStyles['drag-over'] : ''}`}>
                         <ConstructorItems ingredients={ingredients.filter(el => el.type !== 'bun')}/>
                     </li>
                     <li className={'pl-8'}>
-                        <ConstructorElement
+                        {bun ? <ConstructorElement
                             type="bottom"
                             isLocked={true}
-                            text="Краторная булка N-200i (низ)"
-                            price={200}
-                            thumbnail='https://code.s3.yandex.net/react/code/bun-02.png'
-                        />
+                            text={`${bun.name} (низ)`}
+                            price={bun.price}
+                            thumbnail={`${bun.image}`}
+                        /> : <ConstructorElement
+                            type="bottom"
+                            isLocked={true}
+                            price={0}
+                            text={'Перетащите булочку сюда (низ)'}
+                            thumbnail={ripple}/>}
                     </li>
                 </ol>
                 <div className={`${burgerConstructorStyles.order} pt-10`}>
@@ -51,28 +84,28 @@ const BurgerConstructor = ({ingredients}) => {
                         <CurrencyIcon type={'primary'}/>
                     </div>
                     <Button
+                        extraClass={burgerConstructorStyles.button}
                         htmlType="button"
                         type="primary"
                         size="medium"
-                        onClick={open}
+                        onClick={handleClick}
                     >
                 <span className={'text text_type_main-default'}>
                     Оформить заказ
                 </span>
+                        {requested &&
+                            <img className={`${burgerConstructorStyles.loader} pl-10`} src={loader} alt="loading..."/>}
                     </Button>
                 </div>
+                {failed && <p className={'text text_color_error text_type_main-default'}>Ошибка в заказе</p>}
             </section>
-            {isOpen &&
+            {isOpen && success &&
                 <Modal
                     handleClose={close}>
                     <OrderDetails/>
                 </Modal>}
         </>
     )
-}
-
-BurgerConstructor.propTypes = {
-    ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)).isRequired
 }
 
 export default BurgerConstructor
