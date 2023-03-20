@@ -1,16 +1,16 @@
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 import React, {useEffect, useRef, useState} from "react";
 import burgerIngredientsStyles from './burger-ingredients.module.css'
-import PropTypes from "prop-types";
 import IngredientsGroup from "./ingredients-group/ingredients-group";
-import {ingredientType} from "../../utils/types";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {removeCurrentIngredient, setCurrentIngredient} from "../../services/slices/ingredient";
+import {getIngredients} from "../../services/selectors/ingredients";
 
-const BurgerIngredients = ({ingredients}) => {
+const BurgerIngredients = () => {
+    const ingredients = useSelector(getIngredients)
     const [currentTab, setCurrentTab] = useState('bun')
 
     const scrollRef = useRef(null)
@@ -118,10 +118,6 @@ const BurgerIngredients = ({ingredients}) => {
                 </Modal>}
         </>
     )
-}
-
-BurgerIngredients.propTypes = {
-    ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)).isRequired
 }
 
 export default BurgerIngredients

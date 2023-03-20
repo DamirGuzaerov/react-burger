@@ -1,6 +1,4 @@
 import constructorItemsStyles from "./constructor-items.module.css";
-import PropTypes from "prop-types";
-import {ingredientType} from "../../../utils/types";
 import {useDispatch, useSelector} from "react-redux";
 import ConstructorItem from "../constructor-item/constructor-item";
 import {useCallback} from "react";
@@ -25,10 +23,6 @@ const ConstructorItems = () => {
             })}
         </ol>
     )
-}
-
-ConstructorItems.propTypes = {
-    ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)).isRequired
 }
 
 export default ConstructorItems

@@ -1,9 +1,7 @@
 import {Button, ConstructorElement, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import burgerConstructorStyles from './burger-constructor.module.css'
 import {useMemo} from "react";
 import ConstructorItems from "./constructor-items/constructor-items";
-import {ingredientType} from "../../utils/types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
@@ -108,10 +106,6 @@ const BurgerConstructor = () => {
                 </Modal>}
         </>
     )
-}
-
-BurgerConstructor.propTypes = {
-    ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)).isRequired
 }
 
 export default BurgerConstructor

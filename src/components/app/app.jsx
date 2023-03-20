@@ -10,7 +10,7 @@ import {HTML5Backend} from "react-dnd-html5-backend";
 
 function App() {
     const dispatch = useDispatch()
-    const {ingredients, ingredientsRequested} = useSelector(state => state.ingredients)
+    const {ingredientsRequested} = useSelector(state => state.ingredients)
     useEffect(() => {
         dispatch(getBurgerIngredients())
     }, [dispatch])
@@ -21,10 +21,10 @@ function App() {
                 <main className={appStyles.content}>
                     <div className={appStyles['burger-ingredients']}>
                         <h1 className={'text text_type_main-large pt-10 mb-5'}>Соберите бургер</h1>
-                        {ingredientsRequested ? 'Loading...' : <BurgerIngredients ingredients={ingredients}/>}
+                        {ingredientsRequested ? 'Loading...' : <BurgerIngredients/>}
                     </div>
                     <div className={'pt-25'}>
-                        {ingredientsRequested ? 'Loading...' : <BurgerConstructor ingredients={ingredients}/>}
+                        <BurgerConstructor/>
                     </div>
                 </main>
             </DndProvider>
