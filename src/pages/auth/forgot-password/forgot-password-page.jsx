@@ -1,7 +1,7 @@
-import forgotPasswordStyles from './forgot-password.module.css'
+import forgotPasswordStyles from '../styles.module.css'
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link} from "react-router-dom";
-import {useForm} from "../../utils/hooks/useForm";
+import {useForm} from "../../../utils/hooks/useForm";
 
 export const ForgotPasswordPage = () => {
     const {form, change} = useForm({email: ''})

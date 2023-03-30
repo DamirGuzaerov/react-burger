@@ -1,10 +1,10 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {MainPage} from "../../pages/main/main-page";
-import {LoginPage} from "../../pages/login/login-page";
 import {MainLayout} from "../layouts/main-layout/main-layout";
-import {RegistrationPage} from "../../pages/registration/registration-page";
-import {ForgotPasswordPage} from "../../pages/forgot-password/forgot-password-page";
-import {ResetPasswordPage} from "../../pages/reset-password/reset-password-page";
+import {LoginPage} from "../../pages/auth/login/login-page";
+import {RegistrationPage} from "../../pages/auth/registration/registration-page";
+import {ForgotPasswordPage} from "../../pages/auth/forgot-password/forgot-password-page";
+import {ResetPasswordPage} from "../../pages/auth/reset-password/reset-password-page";
 
 function App() {
     return (

@@ -1,8 +1,8 @@
-import loginStyles from './login-page.module.css'
+import loginStyles from '../styles.module.css'
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import {useForm} from "../../utils/hooks/useForm";
+import {useForm} from "../../../utils/hooks/useForm";
 
 export const LoginPage = () => {
     const {form, change} = useForm({email: '', password: ''})
