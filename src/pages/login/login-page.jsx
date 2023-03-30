@@ -2,18 +2,11 @@ import loginStyles from './login-page.module.css'
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import {useForm} from "../../utils/hooks/useForm";
 
 export const LoginPage = () => {
-    const [form, setForm] = useState({email: '', password: ''})
+    const {form, change} = useForm({email: '', password: ''})
     const [hidden, setHidden] = useState(true)
-    const handleOnChange = (e) => {
-        const name = e.target.name
-        const value = e.target.value
-        setForm({
-            ...form,
-            [name]: value
-        })
-    }
 
     const onIconClick = () => {
         setHidden(!hidden)
@@ -32,7 +25,7 @@ export const LoginPage = () => {
                            placeholder='E-mail'
                            name={'email'}
                            type={'email'}
-                           onChange={handleOnChange}
+                           onChange={change}
                            value={form.email}/>
                     <Input extraClass={'mb-6'}
                            placeholder='Пароль'
@@ -40,7 +33,7 @@ export const LoginPage = () => {
                            type={hidden ? 'password' : 'text'}
                            icon={hidden ? 'HideIcon' : 'ShowIcon'}
                            onIconClick={onIconClick}
-                           onChange={handleOnChange}
+                           onChange={change}
                            value={form.password}/>
                     <Button className={'button button_size_medium button_type_primary'}
                             htmlType={'submit'}>

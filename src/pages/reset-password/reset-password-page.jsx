@@ -2,18 +2,12 @@ import resetPasswordStyles from './reset-password-page.module.css'
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import {useForm} from "../../utils/hooks/useForm";
 
 export const ResetPasswordPage = () => {
-    const [form, setForm] = useState({password: '', code: ''})
+    const {form, change} = useForm({password: '', code: ''})
     const [hidden, setHidden] = useState(true)
-    const handleOnChange = (e) => {
-        const name = e.target.name
-        const value = e.target.value
-        setForm({
-            ...form,
-            [name]: value
-        })
-    }
+
     const onIconClick = () => {
         setHidden(!hidden)
     }
@@ -33,13 +27,13 @@ export const ResetPasswordPage = () => {
                            type={hidden ? 'password' : 'text'}
                            icon={hidden ? 'HideIcon' : 'ShowIcon'}
                            onIconClick={onIconClick}
-                           onChange={handleOnChange}
+                           onChange={change}
                            value={form.password}/>
                     <Input extraClass={'mb-6'}
                            placeholder='Введите код из письма'
                            name='code'
                            type={'text'}
-                           onChange={handleOnChange}
+                           onChange={change}
                            value={form.code}/>
                     <Button className={'button button_size_medium button_type_primary'}
                             htmlType={'submit'}>

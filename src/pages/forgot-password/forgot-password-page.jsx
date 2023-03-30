@@ -1,18 +1,10 @@
 import forgotPasswordStyles from './forgot-password.module.css'
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useState} from "react";
 import {Link} from "react-router-dom";
+import {useForm} from "../../utils/hooks/useForm";
 
 export const ForgotPasswordPage = () => {
-    const [form, setForm] = useState({email: '', password: ''})
-    const handleOnChange = (e) => {
-        const name = e.target.name
-        const value = e.target.value
-        setForm({
-            ...form,
-            [name]: value
-        })
-    }
+    const {form, change} = useForm({email: ''})
 
     return (
         <section className={forgotPasswordStyles.wrapper}>
@@ -27,7 +19,7 @@ export const ForgotPasswordPage = () => {
                            placeholder='Укажите e-mail'
                            name={'email'}
                            type={'email'}
-                           onChange={handleOnChange}
+                           onChange={change}
                            value={form.email}/>
                     <Button className={'button button_size_medium button_type_primary'}
                             htmlType={'submit'}>
