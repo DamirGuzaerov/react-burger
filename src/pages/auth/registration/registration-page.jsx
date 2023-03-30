@@ -1,16 +1,12 @@
 import registrationStyles from '../styles.module.css'
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useState} from "react";
 import {Link} from "react-router-dom";
 import {useForm} from "../../../utils/hooks/useForm";
+import {useDisclosure} from "../../../utils/hooks/useDisclosure";
 
 export const RegistrationPage = () => {
     const {form, change} = useForm({name: '',email: '', password: ''})
-    const [hidden, setHidden] = useState(true)
-
-    const onIconClick = () => {
-        setHidden(!hidden)
-    }
+    const {isOpen: hidden, toggle} = useDisclosure(false)
 
     return (
         <section className={registrationStyles.wrapper}>
@@ -38,7 +34,7 @@ export const RegistrationPage = () => {
                            name='password'
                            type={hidden ? 'password' : 'text'}
                            icon={hidden ? 'HideIcon' : 'ShowIcon'}
-                           onIconClick={onIconClick}
+                           onIconClick={toggle}
                            onChange={change}
                            value={form.password}/>
                     <Button className={'button button_size_medium button_type_primary'}

@@ -1,16 +1,12 @@
 import resetPasswordStyles from '../styles.module.css'
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useState} from "react";
 import {Link} from "react-router-dom";
 import {useForm} from "../../../utils/hooks/useForm";
+import {useDisclosure} from "../../../utils/hooks/useDisclosure";
 
 export const ResetPasswordPage = () => {
     const {form, change} = useForm({password: '', code: ''})
-    const [hidden, setHidden] = useState(true)
-
-    const onIconClick = () => {
-        setHidden(!hidden)
-    }
+    const {isOpen: hidden, toggle} = useDisclosure(false)
 
     return (
         <section className={resetPasswordStyles.wrapper}>
@@ -26,7 +22,7 @@ export const ResetPasswordPage = () => {
                            name='password'
                            type={hidden ? 'password' : 'text'}
                            icon={hidden ? 'HideIcon' : 'ShowIcon'}
-                           onIconClick={onIconClick}
+                           onIconClick={toggle}
                            onChange={change}
                            value={form.password}/>
                     <Input extraClass={'mb-6'}
