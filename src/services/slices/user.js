@@ -12,8 +12,8 @@ export const userSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(login.fulfilled, (state, action) => {
-                localStorage.setItem('access-token',action.payload.accessToken.split(" ")[1]);
-                localStorage.setItem('refresh-token',action.payload.refreshToken);
+                localStorage.setItem('accessToken', action.payload.accessToken.split(" ")[1]);
+                localStorage.setItem('refreshToken', action.payload.refreshToken);
 
                 state.user = action.payload.user;
                 state.isAuthChecked = true

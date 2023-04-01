@@ -10,13 +10,14 @@ export const LoginPage = () => {
     const {form, change} = useForm({email: '', password: ''})
     const {isOpen: hidden, toggle} = useDisclosure(false)
     const dispatch = useDispatch()
-    const handleSubmit = () => {
-        dispatch(login())
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        dispatch(login(form))
     }
 
     return (
         <section className={loginStyles.wrapper}>
-            <form className={loginStyles.form} onSubmit={handleSubmit}>
+            <form className={loginStyles.form} onSubmit={(e)=>handleSubmit(e)}>
                 <header className={'mb-6'}>
                     <h3 className={'text text_type_main-medium'}>
                         Вход

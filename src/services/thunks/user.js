@@ -4,12 +4,14 @@ import {request} from "../../utils/api";
 export const login = createAsyncThunk(
     'login/loginStatus',
     async (arg) => {
-        let {email, password} = arg.form
         return await request('api/auth/login', {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
             body: JSON.stringify({
-                "email": email,
-                "password": password
+                "email": arg.email,
+                "password": arg.password
             })
         })
     }
