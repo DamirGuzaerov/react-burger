@@ -5,6 +5,8 @@ import {LoginPage} from "../../pages/auth/login/login-page";
 import {RegistrationPage} from "../../pages/auth/registration/registration-page";
 import {ForgotPasswordPage} from "../../pages/auth/forgot-password/forgot-password-page";
 import {ResetPasswordPage} from "../../pages/auth/reset-password/reset-password-page";
+import {ProfileLayout} from "../layouts/profile-layout/profile-layout";
+import {ProfilePage} from "../../pages/profile/profile-page";
 
 function App() {
     return (
@@ -17,6 +19,9 @@ function App() {
                         <Route path={'/registration'} element={<RegistrationPage/>}/>
                         <Route path={'/forgotPassword'} element={<ForgotPasswordPage/>}/>
                         <Route path={'/resetPassword'} element={<ResetPasswordPage/>}/>
+                        <Route path={'/profile'} element={<ProfileLayout/>}>
+                            <Route index element={<ProfilePage/>}></Route>
+                        </Route>
                     </Route>
                 </Routes>
             </BrowserRouter>
