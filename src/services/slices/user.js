@@ -29,6 +29,9 @@ export const userSlice = createSlice({
                 state.user = action.payload.user;
                 state.isAuthChecked = true;
             })
+            .addCase(getUser.rejected, (state) => {
+                state.isAuthChecked = true;
+            })
     },
 });
 
