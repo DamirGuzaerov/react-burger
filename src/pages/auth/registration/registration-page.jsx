@@ -3,14 +3,20 @@ import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components"
 import {Link} from "react-router-dom";
 import {useForm} from "../../../utils/hooks/useForm";
 import {useDisclosure} from "../../../utils/hooks/useDisclosure";
+import {useDispatch} from "react-redux";
+import {register} from "../../../services/thunks/user";
 
 export const RegistrationPage = () => {
     const {form, change} = useForm({name: '',email: '', password: ''})
     const {isOpen: hidden, toggle} = useDisclosure(false)
-
+    const dispatch = useDispatch()
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(register(form))
+    }
     return (
         <section className={registrationStyles.wrapper}>
-            <form className={registrationStyles.form}>
+            <form className={registrationStyles.form} onSubmit={handleSubmit}>
                 <header className={'mb-6'}>
                     <h3 className={'text text_type_main-medium'}>
                         Регистрация

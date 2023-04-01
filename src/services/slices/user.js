@@ -18,9 +18,16 @@ export const userSlice = createSlice({
                 state.user = action.payload.user;
                 state.isAuthChecked = true
             })
-            .addCase(getUser.fulfilled, (state,action) => {
+            .addCase(register.fulfilled, (state, action) => {
+                localStorage.setItem('accessToken', action.payload.accessToken.split(" ")[1]);
+                localStorage.setItem('refreshToken', action.payload.refreshToken);
+                state.user = action.payload.user;
+                state.isAuthChecked = true
+            })
+            .addCase(getUser.fulfilled, (state, action) => {
                 console.log(action.payload)
                 state.user = action.payload.user;
+                state.isAuthChecked = true;
             })
     },
 });

@@ -17,6 +17,23 @@ export const login = createAsyncThunk(
     }
 )
 
+export const register = createAsyncThunk(
+    'register/registerStatus',
+    async (arg) => {
+        return await request('api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                "email": arg.email,
+                "password": arg.password,
+                "name": arg.name
+            })
+        })
+    }
+)
+
 export const getUser = createAsyncThunk(
     'user/getUserStatus',
     async (arg) => {
