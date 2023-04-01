@@ -36,17 +36,13 @@ export const register = createAsyncThunk(
 
 export const getUser = createAsyncThunk(
     'user/getUserStatus',
-    async (arg) => {
-        let {email, password} = arg.form
+    async () => {
+        let token = localStorage.getItem("accessToken")
         return await request('api/auth/user', {
-            method: 'POST',
+            method: 'GET',
             headers: {
-                'Authorization': localStorage.getItem("access-token")
-            },
-            body: JSON.stringify({
-                "email": email,
-                "password": password
-            })
+                authorization: `Bearer ${token}`
+            }
         })
     }
 )
