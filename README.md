@@ -1,46 +1,56 @@
-# React Stellaris-Burger app
+# React Stellaris-Burger app (In progress)
 
-# Work in progress
+# Description
 
-## Available Scripts
+## Stack of applied technologies 
 
-In the project directory, you can run:
+#### Now
 
-### `npm start`
+- React
+- JS
+- Redux (Redux Toolkit)
+- React Router
+- React DND
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### In future
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- TS
+- Websocket
+- React testing library / Jest
 
-### `npm test`
+## Pages
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Main page (burger constructor)
 
-### `npm run build`
+![Main page](https://code.s3.yandex.net/React/imageGallery_1.jpg)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The main page of the space burger Stellar Burgers: here you can collect an order from any menu items via
+Drag\`n\`Drop
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Profile
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Profile page](https://pictures.s3.yandex.net/resources/PCCWF-1682_5_profile_1673531479.png)
 
-### `npm run eject`
+The user's personal account, where he can change his data or view the history of his orders
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Auth pages
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Sign in](https://pictures.s3.yandex.net/resources/auth_1673531306.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Several pages responsible for user authorization (registration, login, password recovery)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### In future
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Orders list page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The order feed, which is updated in real time, with the ability to go to each of the receipts and see
+the details of the order
+
+#### User orders list page
+
+The current user's order feed, which is updated in real time, with the ability to go to each of the receipts and view
+the order details, is available through the profile page
+
+
+
