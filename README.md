@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# React Stellaris-Burger app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Work in progress
 
 ## Available Scripts
 
