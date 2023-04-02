@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {request} from "../../utils/api";
+import {fetchWithRefresh, request} from "../../utils/api";
 
 export const login = createAsyncThunk(
     'auth/loginStatus',
@@ -38,7 +38,7 @@ export const getUser = createAsyncThunk(
     'user/getUserStatus',
     async () => {
         let token = localStorage.getItem("accessToken")
-        return await request('api/auth/user', {
+        return await fetchWithRefresh('api/auth/user', {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${token}`
