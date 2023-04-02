@@ -25,7 +25,6 @@ export const userSlice = createSlice({
                 state.isAuthChecked = true
             })
             .addCase(getUser.fulfilled, (state, action) => {
-                console.log(action.payload)
                 state.user = action.payload.user;
                 state.isAuthChecked = true;
             })

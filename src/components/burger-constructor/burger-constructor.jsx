@@ -84,7 +84,6 @@ const BurgerConstructor = () => {
                         <CurrencyIcon type={'primary'}/>
                     </div>
                     <Button
-                        extraClass={burgerConstructorStyles.button}
                         htmlType="button"
                         type="primary"
                         size="medium"
@@ -94,7 +93,7 @@ const BurgerConstructor = () => {
                     Оформить заказ
                 </span>
                         {requested &&
-                            <img className={`${burgerConstructorStyles.loader} pl-10`} src={loader} alt="loading..."/>}
+                            <img className={'button-loader pl-10'} src={loader} alt="loading..."/>}
                     </Button>
                 </div>
                 {failed && <p className={'text text_color_error text_type_main-default'}>Ошибка в заказе</p>}

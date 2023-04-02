@@ -51,13 +51,3 @@
     min-height: 20px;
 }
 
-.button{
-    display: flex;
-    align-items: center;
-
-    height: 64px;
-}
-
-.loader{
-    max-height: 100%;
-}

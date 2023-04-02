@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {request} from "../../utils/api";
 
 export const login = createAsyncThunk(
-    'login/loginStatus',
+    'auth/loginStatus',
     async (arg) => {
         return await request('api/auth/login', {
             method: 'POST',
@@ -18,7 +18,7 @@ export const login = createAsyncThunk(
 )
 
 export const register = createAsyncThunk(
-    'register/registerStatus',
+    'auth/registerStatus',
     async (arg) => {
         return await request('api/auth/register', {
             method: 'POST',
@@ -46,5 +46,4 @@ export const getUser = createAsyncThunk(
         })
     }
 )
-
 

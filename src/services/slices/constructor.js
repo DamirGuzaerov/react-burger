@@ -24,7 +24,6 @@ export const constructorSlice = createSlice({
             state.ingredients = state.ingredients.filter(el => el.key !== action.payload)
         },
         clearConstructor: (state) => {
-            console.log('clear')
             state.bun = initialState.bun
             state.ingredients = initialState.ingredients
         }
