@@ -2,7 +2,6 @@ import {BASE_URL} from "./constants";
 
 export const checkResponse = async (res) => {
     if (res.ok) {
-        console.log('ok')
         return await res.json();
     }
     let response = await res.json()
