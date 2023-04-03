@@ -47,3 +47,22 @@ export const getUser = createAsyncThunk(
     }
 )
 
+export const editUser = createAsyncThunk(
+    'user/editUserStatus',
+    async ({email,name}) => {
+        let token = localStorage.getItem("accessToken")
+        return await fetchWithRefresh('api/auth/user', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                email: email,
+                name: name
+            })
+        })
+    }
+)
+
+

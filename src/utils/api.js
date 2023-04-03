@@ -35,8 +35,9 @@ export const fetchWithRefresh = async (url, options) => {
             if (!refreshData.success) {
                 return Promise.reject(refreshData);
             }
+            const accessToken = refreshData.accessToken.split[' '][1]
             localStorage.setItem("refreshToken", refreshData.refreshToken);
-            localStorage.setItem("accessToken", refreshData.accessToken);
+            localStorage.setItem("accessToken", accessToken);
             options.headers.authorization = refreshData.accessToken;
             return await request(url, options);
         } else {
