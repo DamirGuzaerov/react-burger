@@ -100,7 +100,7 @@ const BurgerConstructor = () => {
             </section>
             {isOpen && success &&
                 <Modal
-                    handleClose={close}>
+                    onClose={close}>
                     <OrderDetails/>
                 </Modal>}
         </>

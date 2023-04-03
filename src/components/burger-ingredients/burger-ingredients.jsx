@@ -2,8 +2,6 @@ import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 import React, {useEffect, useRef, useState} from "react";
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import IngredientsGroup from "./ingredients-group/ingredients-group";
-import Modal from "../modal/modal";
-import IngredientDetails from "../ingredient-details/ingredient-details";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
 import {useDispatch, useSelector} from "react-redux";
 import {removeCurrentIngredient, setCurrentIngredient} from "../../services/slices/ingredient";
@@ -20,7 +18,7 @@ const BurgerIngredients = () => {
     const thirdTitleRef = useRef(null)
 
     const dispatch = useDispatch()
-    const {isOpen, open, close} = useDisclosure(false,
+    const {open} = useDisclosure(false,
         {
             onOpen: (ingredient) => {
                 dispatch(setCurrentIngredient(ingredient))
@@ -32,7 +30,6 @@ const BurgerIngredients = () => {
 
     const handleTabClick = (ref) => {
         ref.current?.scrollIntoView({behavior: 'smooth'});
-        setCurrentTab()
     }
     useEffect(() => {
         let elem = scrollRef.current
@@ -110,12 +107,6 @@ const BurgerIngredients = () => {
                         ingredients={ingredients.filter(el => el.type === 'main')}/>
                 </div>
             </section>
-            {isOpen &&
-                <Modal
-                    title={'Детали ингредиента'}
-                    handleClose={close}>
-                    <IngredientDetails/>
-                </Modal>}
         </>
     )
 }

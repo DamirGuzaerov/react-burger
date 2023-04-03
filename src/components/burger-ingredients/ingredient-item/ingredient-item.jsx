@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 import {Counter, CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {ingredientType} from "../../../utils/types";
 import {useDrag} from "react-dnd";
-import { v4 as uuid4 } from 'uuid';
+import {v4 as uuid4} from 'uuid';
 import {useSelector} from "react-redux";
 import {getItemsCount} from "../../../services/selectors/constructor";
+import {Link, useLocation} from "react-router-dom";
 
 export const IngredientItem = ({ingredient, click}) => {
-
-    const count = useSelector(state => getItemsCount(state,{id: ingredient._id, type : ingredient.type}))
+    const location = useLocation()
+    const count = useSelector(state => getItemsCount(state, {id: ingredient._id, type: ingredient.type}))
 
     const [, dragRef] = useDrag({
         type: "ingredient",
@@ -23,28 +24,36 @@ export const IngredientItem = ({ingredient, click}) => {
 
     return (
         <>
-            <section
-                ref={dragRef}
-                className={ingredientItemStyles['ingredient-item']}
+            <Link
+                key={ingredient._id}
+                to={`/ingredients/${ingredient._id}`}
+                state={{ background: location }}
                 onClick={handleClick}
+                className={'text_color_primary'}
             >
-                <img
-                    className={'pl-4 pr-4'}
-                    src={ingredient.image}
-                    alt={ingredient.name}/>
-                <div className={`${ingredientItemStyles.price} pt-1 pb-1`}>
+                <section
+                    ref={dragRef}
+                    className={ingredientItemStyles['ingredient-item']}
+                >
+                    <img
+                        className={'pl-4 pr-4'}
+                        src={ingredient.image}
+                        alt={ingredient.name}/>
+                    <div className={`${ingredientItemStyles.price} pt-1 pb-1`}>
                 <span className={'text text_type_main-default pr-2'}>
                     {ingredient.price}
                 </span>
-                    <CurrencyIcon type={'primary'}/>
-                </div>
-                <span className={`${ingredientItemStyles.name} text text_type_main-small`}>
-                {ingredient.name}
-            </span>
-                {count > 0 &&
-                    <Counter count={count} size="default" extraClass={ingredientItemStyles.counter}/>
-                }
-            </section>
+                        <CurrencyIcon type={'primary'}/>
+                    </div>
+                    <span className={`${ingredientItemStyles.name} text text_type_main-small`}>
+                        {ingredient.name}
+                    </span>
+                    {count > 0 &&
+                        <Counter count={count} size="default" extraClass={ingredientItemStyles.counter}/>
+                    }
+                </section>
+            </Link>
+
         </>
     )
 }
