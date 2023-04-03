@@ -1,7 +1,14 @@
 import layoutStyles from './profile-layout.module.css'
-import {NavLink, Outlet} from "react-router-dom";
+import {Link, NavLink, Outlet} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {logout as logoutUser} from "../../../services/thunks/user";
 
 export const ProfileLayout = () => {
+    const dispatch = useDispatch()
+    const logout = () => {
+        console.log('logout')
+        dispatch(logoutUser())
+    }
     return (
         <div className={layoutStyles['profile-wrapper']}>
             <div className={layoutStyles.info}>
@@ -24,12 +31,11 @@ export const ProfileLayout = () => {
                             </NavLink>
                         </li>
                         <li className={layoutStyles.link}>
-                            <NavLink to={'/logout'}
-                                     className={({isActive}) => isActive ?
-                                         'text text_type_main-medium text_color_primary' :
-                                         'text text_type_main-medium text_color_inactive'}>
+                            <Link to={'/profile'}
+                                  onClick={logout}
+                                  className={'text text_type_main-medium text_color_inactive'}>
                                 Выход
-                            </NavLink>
+                            </Link>
                         </li>
                     </ul>
                 </nav>

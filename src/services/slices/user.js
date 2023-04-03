@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {editUser, getUser, login, register} from "../thunks/user";
+import {editUser, getUser, login, logout, register} from "../thunks/user";
 
 const initialState = {
     user: null,
@@ -31,8 +31,13 @@ export const userSlice = createSlice({
             .addCase(getUser.rejected, (state) => {
                 state.isAuthChecked = true;
             })
-            .addCase(editUser.fulfilled, (state,action) => {
+            .addCase(editUser.fulfilled, (state, action) => {
                 state.user = action.payload.user;
+            })
+            .addCase(logout.fulfilled, (state,action) => {
+                console.log(action.payload)
+                localStorage.clear()
+                state.user = initialState.user
             })
     },
 });
