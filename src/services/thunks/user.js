@@ -49,8 +49,10 @@ export const getUser = createAsyncThunk(
 
 export const editUser = createAsyncThunk(
     'user/editUserStatus',
-    async ({email,name,password}) => {
+    async ({email, name, password}) => {
         let token = localStorage.getItem("accessToken")
+        const requestBody = { email, name, password }
+        Object.keys(requestBody).forEach(key => (requestBody[key] ?? '') === '' && delete requestBody[key])
         return await fetchWithRefresh('api/auth/user', {
             method: 'PATCH',
             headers: {
@@ -58,9 +60,7 @@ export const editUser = createAsyncThunk(
                 authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
-                email: email,
-                name: name,
-                password: password
+                ...requestBody
             })
         })
     }
