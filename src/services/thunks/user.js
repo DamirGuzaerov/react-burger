@@ -49,7 +49,7 @@ export const getUser = createAsyncThunk(
 
 export const editUser = createAsyncThunk(
     'user/editUserStatus',
-    async ({email,name}) => {
+    async ({email,name,password}) => {
         let token = localStorage.getItem("accessToken")
         return await fetchWithRefresh('api/auth/user', {
             method: 'PATCH',
@@ -59,7 +59,8 @@ export const editUser = createAsyncThunk(
             },
             body: JSON.stringify({
                 email: email,
-                name: name
+                name: name,
+                password: password
             })
         })
     }
