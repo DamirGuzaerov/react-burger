@@ -23,7 +23,7 @@ export const ForgotPasswordPage = () => {
     }
 
     if (passwordResetCodeSucceed)
-        return <Navigate to={'/resetPassword'} state={{from: location}}/>
+        return <Navigate to={'/reset-password'} state={{from: location}}/>
 
     return (
         <section className={forgotPasswordStyles.wrapper}>

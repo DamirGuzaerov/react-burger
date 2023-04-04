@@ -47,10 +47,10 @@ export const LoginPage = () => {
                 </div>
                 <footer>
                     <p className={'text text_type_main-default text_color_inactive mb-1'}>
-                        Вы - новый пользователь? <Link to={'/registration'}>Зарегестрироваться</Link>
+                        Вы - новый пользователь? <Link to={'/register'}>Зарегестрироваться</Link>
                     </p>
                     <p className={'text text_type_main-default text_color_inactive'}>
-                        Забыли пароль? <Link to={'/forgotPassword'}>Восстановить пароль</Link>
+                        Забыли пароль? <Link to={'/forgot-password'}>Восстановить пароль</Link>
                     </p>
                 </footer>
             </form>

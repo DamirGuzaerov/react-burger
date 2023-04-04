@@ -39,9 +39,9 @@ function App() {
                 <Route path={'/'} element={<MainLayout/>}>
                     <Route index element={<MainPage/>}/>
                     <Route path={'/login'} element={<OnlyUnAuth element={<LoginPage/>}/>}/>
-                    <Route path={'/registration'} element={<OnlyUnAuth element={<RegistrationPage/>}/>}/>
-                    <Route path={'/forgotPassword'} element={<OnlyUnAuth element={<ForgotPasswordPage/>}/>}/>
-                    <Route path={'/resetPassword'} element={<OnlyUnAuth element={<ResetPasswordPage/>}/>}/>
+                    <Route path={'/register'} element={<OnlyUnAuth element={<RegistrationPage/>}/>}/>
+                    <Route path={'/forgot-password'} element={<OnlyUnAuth element={<ForgotPasswordPage/>}/>}/>
+                    <Route path={'/reset-password'} element={<OnlyUnAuth element={<ResetPasswordPage/>}/>}/>
                     <Route path={'/orders'} element={<OrdersPage/>}/>
                     <Route path={'/profile'} element={<OnlyAuth element={<ProfileLayout/>}/>}>
                         <Route index element={<ProfilePage/>}/>

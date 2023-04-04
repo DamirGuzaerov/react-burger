@@ -24,7 +24,7 @@ export const ResetPasswordPage = () => {
     }
 
     if(location.state && location.state.from){
-        if (location.state.from.pathname !== '/forgotPassword')
+        if (location.state.from.pathname !== '/forgot-password')
             return <Navigate to={'/'}/>
     }
     else return <Navigate to={'/'}/>
