@@ -16,6 +16,7 @@ export const ProfileLayout = () => {
                     <ul>
                         <li className={layoutStyles.link}>
                             <NavLink to={'/profile'}
+                                     end
                                      className={({isActive}) => isActive ?
                                          'text text_type_main-medium text_color_primary' :
                                          'text text_type_main-medium text_color_inactive'}>
@@ -23,7 +24,7 @@ export const ProfileLayout = () => {
                             </NavLink>
                         </li>
                         <li className={layoutStyles.link}>
-                            <NavLink to={'/orders'}
+                            <NavLink to={'orders'}
                                      className={({isActive}) => isActive ?
                                          'text text_type_main-medium text_color_primary' :
                                          'text text_type_main-medium text_color_inactive'}>

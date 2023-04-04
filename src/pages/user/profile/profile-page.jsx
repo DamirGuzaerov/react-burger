@@ -1,8 +1,8 @@
-import {useForm} from "../../utils/hooks/useForm";
+import {useForm} from "../../../utils/hooks/useForm";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import profileStyles from './profile-page.module.css'
 import {useDispatch, useSelector} from "react-redux";
-import {editUser} from "../../services/thunks/user";
+import {editUser} from "../../../services/thunks/user";
 import {Link} from "react-router-dom";
 
 export const ProfilePage = () => {

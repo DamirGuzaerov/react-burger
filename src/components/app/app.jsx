@@ -6,7 +6,7 @@ import {RegistrationPage} from "../../pages/auth/registration/registration-page"
 import {ForgotPasswordPage} from "../../pages/auth/forgot-password/forgot-password-page";
 import {ResetPasswordPage} from "../../pages/auth/reset-password/reset-password-page";
 import {ProfileLayout} from "../layouts/profile-layout/profile-layout";
-import {ProfilePage} from "../../pages/profile/profile-page";
+import {ProfilePage} from "../../pages/user/profile/profile-page";
 import {OnlyAuth, OnlyUnAuth} from "../protected-route/protected-route";
 import React, {useEffect} from "react";
 import {getUser} from "../../services/thunks/user";
@@ -15,6 +15,8 @@ import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
 import {getBurgerIngredients} from "../../services/thunks/ingredients";
 import {IngredientPage} from "../../pages/ingredient/ingredient-page";
+import {OrdersHistoryPage} from "../../pages/user/orders/orders-history-page";
+import {OrdersPage} from "../../pages/orders/orders-page";
 
 function App() {
     const dispatch = useDispatch()
@@ -40,8 +42,10 @@ function App() {
                     <Route path={'/registration'} element={<OnlyUnAuth element={<RegistrationPage/>}/>}/>
                     <Route path={'/forgotPassword'} element={<OnlyUnAuth element={<ForgotPasswordPage/>}/>}/>
                     <Route path={'/resetPassword'} element={<OnlyUnAuth element={<ResetPasswordPage/>}/>}/>
+                    <Route path={'/orders'} element={<OrdersPage/>}/>
                     <Route path={'/profile'} element={<OnlyAuth element={<ProfileLayout/>}/>}>
                         <Route index element={<ProfilePage/>}/>
+                        <Route path={'orders'} element={<OrdersHistoryPage/>} />
                     </Route>
                     <Route path={'/ingredients/:id'} element={<IngredientPage/>}/>
                 </Route>

@@ -16,7 +16,7 @@ export const AppHeader = () => {
                         </NavLink>
                     </li>
                     <li className={`${headerStyles['nav-item']} pt-4 pb-4 pl-5 pr-5`}>
-                        <NavLink to={'/login'} className={headerStyles.link}>
+                        <NavLink to={'/orders'} className={headerStyles.link}>
                             <ListIcon type={'secondary'}/>
                             <span className={'pl-2 text text_type_main-default text_color_inactive'}>
                                 Лента заказов
