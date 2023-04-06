@@ -39,3 +39,20 @@ ol,ul{
   padding: 0;
   margin: 0;
 }
+
+a{
+  text-decoration: none;
+}
+
+.button{
+  display: inline-flex;
+  align-items: center;
+}
+
+.button_size_medium{
+  height: 56px;
+}
+
+.button-loader{
+  max-height: 100%;
+}

@@ -6,6 +6,7 @@ import {useRef} from "react";
 const ModalOverlay = ({children, handleClose}) => {
     const modalOverlayRef = useRef(null)
 
+    console.log(handleClose)
     useModalClose(modalOverlayRef, handleClose)
 
     return (

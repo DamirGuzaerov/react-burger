@@ -1,34 +1,69 @@
-import appStyles from './app.module.css';
-import {AppHeader} from "../app-header/app-header";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
+import {MainPage} from "../../pages/main/main-page";
+import {MainLayout} from "../layouts/main-layout/main-layout";
+import {LoginPage} from "../../pages/auth/login/login-page";
+import {RegistrationPage} from "../../pages/auth/registration/registration-page";
+import {ForgotPasswordPage} from "../../pages/auth/forgot-password/forgot-password-page";
+import {ResetPasswordPage} from "../../pages/auth/reset-password/reset-password-page";
+import {ProfileLayout} from "../layouts/profile-layout/profile-layout";
+import {ProfilePage} from "../../pages/user/profile/profile-page";
+import {OnlyAuth, OnlyUnAuth} from "../protected-route/protected-route";
+import React, {useEffect} from "react";
+import {getUser} from "../../services/thunks/user";
+import {useDispatch} from "react-redux";
+import IngredientDetails from "../ingredient-details/ingredient-details";
+import Modal from "../modal/modal";
 import {getBurgerIngredients} from "../../services/thunks/ingredients";
-import {DndProvider} from "react-dnd";
-import {HTML5Backend} from "react-dnd-html5-backend";
+import {IngredientPage} from "../../pages/ingredient/ingredient-page";
+import {OrdersHistoryPage} from "../../pages/user/orders/orders-history-page";
+import {OrdersPage} from "../../pages/orders/orders-page";
 
 function App() {
     const dispatch = useDispatch()
-    const {ingredientsRequested} = useSelector(state => state.ingredients)
+    const location = useLocation();
+    const navigate = useNavigate();
+    const background = location.state && location.state.background;
+
+    const handleModalClose = () => {
+        navigate(-1);
+    };
+
     useEffect(() => {
+        dispatch(getUser())
         dispatch(getBurgerIngredients())
     }, [dispatch])
+
     return (
-        <div className={appStyles['main-wrapper']}>
-            <AppHeader/>
-            <DndProvider backend={HTML5Backend}>
-                <main className={appStyles.content}>
-                    <div className={appStyles['burger-ingredients']}>
-                        <h1 className={'text text_type_main-large pt-10 mb-5'}>Соберите бургер</h1>
-                        {ingredientsRequested ? 'Loading...' : <BurgerIngredients/>}
-                    </div>
-                    <div className={'pt-25'}>
-                        <BurgerConstructor/>
-                    </div>
-                </main>
-            </DndProvider>
-        </div>
+        <>
+            <Routes location={background || location}>
+                <Route path={'/'} element={<MainLayout/>}>
+                    <Route index element={<MainPage/>}/>
+                    <Route path={'/login'} element={<OnlyUnAuth element={<LoginPage/>}/>}/>
+                    <Route path={'/register'} element={<OnlyUnAuth element={<RegistrationPage/>}/>}/>
+                    <Route path={'/forgot-password'} element={<OnlyUnAuth element={<ForgotPasswordPage/>}/>}/>
+                    <Route path={'/reset-password'} element={<OnlyUnAuth element={<ResetPasswordPage/>}/>}/>
+                    <Route path={'/orders'} element={<OrdersPage/>}/>
+                    <Route path={'/profile'} element={<OnlyAuth element={<ProfileLayout/>}/>}>
+                        <Route index element={<ProfilePage/>}/>
+                        <Route path={'orders'} element={<OrdersHistoryPage/>} />
+                    </Route>
+                    <Route path={'/ingredients/:id'} element={<IngredientPage/>}/>
+                </Route>
+            </Routes>
+
+            {background && (
+                <Routes>
+                    <Route
+                        path='/ingredients/:id'
+                        element={
+                            <Modal onClose={handleModalClose}>
+                                <IngredientDetails/>
+                            </Modal>
+                        }
+                    />
+                </Routes>)}
+        </>
+
     );
 }
 

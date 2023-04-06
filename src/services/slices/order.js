@@ -14,7 +14,6 @@ export const order = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(addOrder.fulfilled, (state, action) => {
-                console.log(action.payload)
                 state.requested = false
                 state.success = true
                 state.failed = false
