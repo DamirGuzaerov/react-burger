@@ -1,10 +1,14 @@
-import PropTypes from "prop-types";
 import {IngredientItem} from "../ingredient-item/ingredient-item";
 import ingredientsGroupStyles from "./ingredients-group.module.css";
-import {ingredientType} from "../../../utils/types";
+import {IIngredient} from "../../../utils/types";
 import {forwardRef} from "react";
 
-const IngredientsGroup = forwardRef(({title, ingredients,elementsClick},forwardRef) => {
+interface IIngredientGroupProps {
+    title: string,
+    ingredients: IIngredient[],
+    elementsClick: (ingredient: IIngredient) => void
+}
+const IngredientsGroup = forwardRef<HTMLHeadingElement,IIngredientGroupProps>(({title, ingredients,elementsClick},forwardRef): JSX.Element => {
     return (
         <div className={`${ingredientsGroupStyles['ingredients-group']} pt-10 pb-10`}>
             <h2 className={'text text_type_main-medium'} ref={forwardRef}>
@@ -22,11 +26,5 @@ const IngredientsGroup = forwardRef(({title, ingredients,elementsClick},forwardR
             </div>
         </div>)
 })
-
-IngredientsGroup.propTypes = {
-    title: PropTypes.string,
-    ingredients: PropTypes.arrayOf(PropTypes.shape(ingredientType)).isRequired,
-    elementsClick: PropTypes.func
-}
 
 export default IngredientsGroup

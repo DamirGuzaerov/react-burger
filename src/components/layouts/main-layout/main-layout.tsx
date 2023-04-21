@@ -4,7 +4,7 @@ import {DndProvider} from "react-dnd";
 import {Outlet} from "react-router-dom";
 import {AppHeader} from "../../app-header/app-header";
 
-export const MainLayout = () => {
+export const MainLayout = (): JSX.Element => {
     return (
         <div className={layoutStyles['main-wrapper']}>
             <AppHeader/>

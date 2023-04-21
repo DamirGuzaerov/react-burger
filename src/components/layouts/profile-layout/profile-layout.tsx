@@ -1,10 +1,10 @@
 import layoutStyles from './profile-layout.module.css'
 import {Link, NavLink, Outlet} from "react-router-dom";
-import {useDispatch} from "react-redux";
 import {logout as logoutUser} from "../../../services/thunks/user";
+import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 
-export const ProfileLayout = () => {
-    const dispatch = useDispatch()
+export const ProfileLayout = (): JSX.Element => {
+    const dispatch = useAppDispatch()
     const logout = () => {
         console.log('logout')
         dispatch(logoutUser())

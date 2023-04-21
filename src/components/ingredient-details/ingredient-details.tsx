@@ -1,12 +1,12 @@
 import ingredientDetailsStyles from './ingredient-details.module.css'
 import IngredientDetail from "./ingredient-detail/ingredient-detail";
-import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {getIngredientById} from "../../services/selectors/ingredients";
+import {useAppSelector} from "../../utils/hooks/useAppSelector";
 
-const IngredientDetails = () => {
+const IngredientDetails = (): JSX.Element => {
     const {id} = useParams()
-    const ingredient = useSelector(state => getIngredientById(state, id))
+    const ingredient = useAppSelector(state => getIngredientById(state, id))
     return (
         <div>
             {ingredient && (<div className={`${ingredientDetailsStyles.container}`}>

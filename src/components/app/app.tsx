@@ -10,16 +10,16 @@ import {ProfilePage} from "../../pages/user/profile/profile-page";
 import {OnlyAuth, OnlyUnAuth} from "../protected-route/protected-route";
 import React, {useEffect} from "react";
 import {getUser} from "../../services/thunks/user";
-import {useDispatch} from "react-redux";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
 import {getBurgerIngredients} from "../../services/thunks/ingredients";
 import {IngredientPage} from "../../pages/ingredient/ingredient-page";
 import {OrdersHistoryPage} from "../../pages/user/orders/orders-history-page";
 import {OrdersPage} from "../../pages/orders/orders-page";
+import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
 
-function App() {
-    const dispatch = useDispatch()
+function App(): JSX.Element {
+    const dispatch = useAppDispatch()
     const location = useLocation();
     const navigate = useNavigate();
     const background = location.state && location.state.background;
@@ -45,7 +45,7 @@ function App() {
                     <Route path={'/orders'} element={<OrdersPage/>}/>
                     <Route path={'/profile'} element={<OnlyAuth element={<ProfileLayout/>}/>}>
                         <Route index element={<ProfilePage/>}/>
-                        <Route path={'orders'} element={<OrdersHistoryPage/>} />
+                        <Route path={'orders'} element={<OrdersHistoryPage/>}/>
                     </Route>
                     <Route path={'/ingredients/:id'} element={<IngredientPage/>}/>
                 </Route>
@@ -56,12 +56,14 @@ function App() {
                     <Route
                         path='/ingredients/:id'
                         element={
-                            <Modal onClose={handleModalClose}>
+                            <Modal title={'Детали ингридиента'} onClose={handleModalClose}>
                                 <IngredientDetails/>
                             </Modal>
                         }
                     />
-                </Routes>)}
+                </Routes>
+            )
+            }
         </>
 
     );

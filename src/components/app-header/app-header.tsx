@@ -2,7 +2,7 @@ import {Logo, BurgerIcon, ProfileIcon, ListIcon} from '@ya.praktikum/react-devel
 import headerStyles from './app-header.module.css'
 import {Link, NavLink} from "react-router-dom";
 
-export const AppHeader = () => {
+export const AppHeader = (): JSX.Element => {
     return (
         <header className={`${headerStyles.header}`}>
             <nav className={`${headerStyles.nav} pt-4 pb-4`}>
