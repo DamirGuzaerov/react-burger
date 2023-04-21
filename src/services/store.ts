@@ -20,3 +20,7 @@ export const mainStore = configureStore({
         devTools: true,
         middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     })
+
+export type RootState = ReturnType<typeof mainStore.getState>;
+
+export type AppDispatch = typeof mainStore.dispatch;

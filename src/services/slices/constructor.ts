@@ -1,6 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {IConstructorIngredient} from "../../utils/types";
 
-const initialState = {
+interface IConstructorSlice {
+    bun: IConstructorIngredient | null,
+    ingredients: IConstructorIngredient[]
+}
+const initialState: IConstructorSlice = {
     bun: null,
     ingredients: []
 }

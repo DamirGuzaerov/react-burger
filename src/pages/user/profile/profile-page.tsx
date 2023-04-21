@@ -1,20 +1,22 @@
 import {useForm} from "../../../utils/hooks/useForm";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import profileStyles from './profile-page.module.css'
-import {useDispatch, useSelector} from "react-redux";
 import {editUser} from "../../../services/thunks/user";
 import {Link} from "react-router-dom";
+import {useAppSelector} from "../../../utils/hooks/useAppSelector";
+import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
+import {FormEvent} from "react";
 
 export const ProfilePage = () => {
-    const user = useSelector(state => state.user.user)
+    const user = useAppSelector(state => state.user.user)
     const {form, change, reset, disabledFields, toggleFieldAvailability} = useForm({
-        name: user.name,
-        email: user.email,
+        name: user!.name,
+        email: user!.email,
         password: ''
     }, {disabledFieldsInit: ['name', 'email', 'password']})
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
         dispatch(editUser(form))
     }

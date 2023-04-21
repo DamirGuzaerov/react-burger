@@ -1,7 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {getBurgerIngredients} from "../thunks/ingredients";
+import {IIngredient} from "../../utils/types";
 
-const initialState = {
+interface IIngredientsSlice{
+    ingredients: IIngredient[],
+    ingredientsRequested: boolean,
+    ingredientsSucceed: boolean,
+    ingredientsFailed: boolean,
+}
+
+const initialState: IIngredientsSlice = {
     ingredients: [],
     ingredientsRequested: false,
     ingredientsSucceed: false,
@@ -11,6 +19,7 @@ const initialState = {
 export const ingredientsSlice = createSlice({
     name: 'ingredients',
     initialState,
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getBurgerIngredients.fulfilled, (state, action) => {
