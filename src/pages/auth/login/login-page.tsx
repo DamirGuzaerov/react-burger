@@ -6,6 +6,7 @@ import {useDisclosure} from "../../../utils/hooks/useDisclosure";
 import {login} from "../../../services/thunks/user";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 import {FormEvent} from "react";
+import {IUser} from "../../../utils/types";
 
 export const LoginPage = (): JSX.Element => {
     const {form, change} = useForm({email: '', password: ''})
@@ -13,7 +14,7 @@ export const LoginPage = (): JSX.Element => {
     const dispatch = useAppDispatch()
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
-        dispatch(login(form))
+        dispatch(login(form as IUser))
     }
 
     return (

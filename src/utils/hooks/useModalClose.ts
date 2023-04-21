@@ -1,9 +1,9 @@
-import {useEffect} from "react";
+import {RefObject, useEffect} from "react";
 
-export const useModalClose = (ref, close) => {
+export const useModalClose = (ref: RefObject<any>, close: ()=>void) => {
     useEffect(() => {
         const reference = ref.current;
-        const handleOnClick = (event) => {
+        const handleOnClick = (event: MouseEvent) => {
             if (reference === event.target) {
                 close();
             }

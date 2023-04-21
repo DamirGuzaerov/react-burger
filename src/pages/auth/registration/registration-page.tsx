@@ -6,6 +6,7 @@ import {useDisclosure} from "../../../utils/hooks/useDisclosure";
 import {register} from "../../../services/thunks/user";
 import {FormEvent} from "react";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
+import {IUser} from "../../../utils/types";
 
 export const RegistrationPage = (): JSX.Element => {
     const {form, change} = useForm({name: '',email: '', password: ''})
@@ -13,7 +14,7 @@ export const RegistrationPage = (): JSX.Element => {
     const dispatch = useAppDispatch()
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        dispatch(register(form))
+        dispatch(register(form as IUser))
     }
     return (
         <section className={registrationStyles.wrapper}>

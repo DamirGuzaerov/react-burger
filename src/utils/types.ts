@@ -1,3 +1,6 @@
+export interface IStringParams {
+		[key: string]: string | undefined;
+}
 export interface IDraggable {
 		index: number
 }
@@ -27,8 +30,9 @@ export interface IOrderDetails {
 		}
 }
 
-export interface IUser {
+export interface IUser extends IStringParams{
 	email: string;
-	name: string;
-	password?: string;
+	name: string | undefined;
+	password: string | undefined;
 }
+
