@@ -7,14 +7,13 @@
 #### Now
 
 - React
-- JS
+- TS
 - Redux (Redux Toolkit)
 - React Router
 - React DND
 
 #### In future
 
-- TS
 - Websocket
 - React testing library / Jest
 
