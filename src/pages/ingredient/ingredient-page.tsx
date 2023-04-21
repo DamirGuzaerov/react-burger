@@ -1,6 +1,6 @@
 import IngredientDetails from "../../components/ingredient-details/ingredient-details";
 
-export const IngredientPage = () => {
+export const IngredientPage = (): JSX.Element => {
     return (
         <>
             <section className={'mt-30'}>

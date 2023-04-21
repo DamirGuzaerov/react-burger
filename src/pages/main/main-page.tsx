@@ -1,10 +1,10 @@
-import {useSelector} from "react-redux";
 import mainStyles from "../../pages/main/main-page.module.css";
 import BurgerIngredients from "../../components/burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../../components/burger-constructor/burger-constructor";
+import {useAppSelector} from "../../utils/hooks/useAppSelector";
 
-export const MainPage = () => {
-    const {ingredientsRequested} = useSelector(state => state.ingredients)
+export const MainPage = (): JSX.Element => {
+    const {ingredientsRequested} = useAppSelector(state => state.ingredients)
 
     return (
         <main className={mainStyles.content}>

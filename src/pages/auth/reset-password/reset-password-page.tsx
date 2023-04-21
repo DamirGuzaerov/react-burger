@@ -3,31 +3,32 @@ import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components"
 import {Link, Navigate, useLocation} from "react-router-dom";
 import {useForm} from "../../../utils/hooks/useForm";
 import {useDisclosure} from "../../../utils/hooks/useDisclosure";
-import {useDispatch, useSelector} from "react-redux";
 import {resetPassword} from "../../../services/thunks/password";
 import loader from "../../../images/loader.svg";
+import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
+import {useAppSelector} from "../../../utils/hooks/useAppSelector";
+import {FormEvent} from "react";
 
 export const ResetPasswordPage = () => {
     const {form, change} = useForm({password: '', code: ''})
     const {isOpen: hidden, toggle} = useDisclosure(false)
     const location = useLocation()
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const {
         passwordResetRequested,
         passwordResetSucceed,
         passwordResetFailed,
-    } = useSelector(state => state.password)
+    } = useAppSelector(state => state.password)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         dispatch(resetPassword(form))
     }
 
-    if(location.state && location.state.from){
+    if (location.state && location.state.from) {
         if (location.state.from.pathname !== '/forgot-password')
             return <Navigate to={'/'}/>
-    }
-    else return <Navigate to={'/'}/>
+    } else return <Navigate to={'/'}/>
 
     if (passwordResetSucceed)
         return <Navigate to={'/profile'}/>
@@ -67,8 +68,8 @@ export const ResetPasswordPage = () => {
                     {passwordResetFailed &&
                         <p
                             className={'text text_type_main-default text_color_error pt-5'}>
-                        Проверьте корректность введенных данных
-                    </p>}
+                            Проверьте корректность введенных данных
+                        </p>}
                 </div>
 
                 <footer>

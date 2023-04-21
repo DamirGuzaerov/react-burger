@@ -2,23 +2,24 @@ import forgotPasswordStyles from '../styles.module.css'
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Navigate, useLocation} from "react-router-dom";
 import {useForm} from "../../../utils/hooks/useForm";
-import {useDispatch, useSelector} from "react-redux";
 import {getPasswordResetCode} from "../../../services/thunks/password";
 import loader from "../../../images/loader.svg";
+import {useAppSelector} from "../../../utils/hooks/useAppSelector";
+import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
+import {FormEvent} from "react";
 
-export const ForgotPasswordPage = () => {
+export const ForgotPasswordPage = (): JSX.Element => {
     const {form, change} = useForm({email: ''})
     const location = useLocation()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const {
         passwordResetCodeRequested,
         passwordResetCodeSucceed,
-    } = useSelector(state => state.password)
+    } = useAppSelector(state => state.password)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
-        console.log(form.email)
         dispatch(getPasswordResetCode(form.email))
     }
 
