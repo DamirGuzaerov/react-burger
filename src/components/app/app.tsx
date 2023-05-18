@@ -42,11 +42,12 @@ function App(): JSX.Element {
                     <Route path={'/register'} element={<OnlyUnAuth element={<RegistrationPage/>}/>}/>
                     <Route path={'/forgot-password'} element={<OnlyUnAuth element={<ForgotPasswordPage/>}/>}/>
                     <Route path={'/reset-password'} element={<OnlyUnAuth element={<ResetPasswordPage/>}/>}/>
-                    <Route path={'/orders'} element={<OrdersPage/>}/>
+                    <Route path={'/feed'} element={<OrdersPage/>}/>
                     <Route path={'/profile'} element={<OnlyAuth element={<ProfileLayout/>}/>}>
                         <Route index element={<ProfilePage/>}/>
                         <Route path={'orders'} element={<OrdersHistoryPage/>}/>
                     </Route>
+                    <Route path={'/profile/orders/:id'} element={<OrdersHistoryPage/>}/>
                     <Route path={'/ingredients/:id'} element={<IngredientPage/>}/>
                 </Route>
             </Routes>

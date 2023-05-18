@@ -1,0 +1,48 @@
+.wrapper{
+    background: #1C1C21;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 40px;
+
+    min-height: 214px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ingredients-wrapper{
+    position: relative;
+    height: 64px;
+}
+
+.ingredient{
+    position: absolute;
+
+    width: 64px;
+    height: 64px;
+
+    object-fit: contain;
+
+    background: #131316;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #e7b5ff;
+}
+
+.image{
+    max-height: 56px;
+}
+
+.image-last{
+    opacity: 0.3;
+}
+
+.ingredients-counter{
+    position: absolute;
+}
