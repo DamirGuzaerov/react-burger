@@ -24,7 +24,7 @@ export const AppHeader = (): JSX.Element => {
                         </NavLink>
                     </li>
                     <li className={`${headerStyles['nav-item']} pt-4 pb-4 pl-5 pr-5`}>
-                        <NavLink to={'orders'}
+                        <NavLink to={'feed'}
                                  className={({isActive}) => isActive ?
                                      'text text_type_main-medium text_color_primary' :
                                      'text text_type_main-medium text_color_inactive'}>

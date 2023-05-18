@@ -1,0 +1,12 @@
+.item:not(:last-child){
+    margin-bottom: 16px;
+}
+
+.wrapper{
+    overflow-y: auto;
+    height: 100%;
+}
+
+.wrapper::-webkit-scrollbar-track{
+    margin-bottom: 52px;
+}
