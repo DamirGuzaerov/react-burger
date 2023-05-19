@@ -5,6 +5,8 @@
     border-radius: 40px;
 
     min-height: 214px;
+
+    cursor: pointer;
 }
 
 .header{
@@ -38,18 +40,6 @@
     justify-content: center;
 
     border: 2px solid #e7b5ff;
-}
-
-.image{
-    max-height: 56px;
-}
-
-.image-last{
-    opacity: 0.3;
-}
-
-.ingredients-counter{
-    position: absolute;
 }
 
 .total{

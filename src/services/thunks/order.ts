@@ -3,7 +3,7 @@ import {request} from "../../utils/api";
 import {IConstructorIngredient} from "../../utils/types";
 
 export const addOrder = createAsyncThunk(
-		'order/postOrderStatus',
+		'orderDetails/postOrderStatus',
 		async ({ingredients, bun}: { ingredients: IConstructorIngredient[], bun: IConstructorIngredient }) => {
 				let ingredientIds = ingredients.map(el => el._id).concat([bun?._id, bun?._id])
 				return await request('api/orders', {

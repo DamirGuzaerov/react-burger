@@ -3,7 +3,7 @@ import burgerConstructorStyles from './burger-constructor.module.css'
 import {useMemo} from "react";
 import ConstructorItems from "./constructor-items/constructor-items";
 import Modal from "../modal/modal";
-import OrderDetails from "../order-details/order-details";
+import OrderDetails from "../order/order-details/order-details";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
 import ripple from '../../images/ripple.svg'
 import loader from '../../images/loader.svg'
@@ -14,8 +14,8 @@ import {useAppSelector} from "../../utils/hooks/useAppSelector";
 import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
 
 const BurgerConstructor = (): JSX.Element => {
-		const {bun, ingredients} = useAppSelector(state => state.burger_constructor)
-		const {requested, success, failed} = useAppSelector(state => state.order)
+		const {bun, ingredients} = useAppSelector(state => state.burgerConstructor)
+		const {requested, success, failed} = useAppSelector(state => state.orderDetails)
 		const dispatch = useAppDispatch()
 		const {isOpen, open, close} = useDisclosure(false)
 		const handleClick = () => {

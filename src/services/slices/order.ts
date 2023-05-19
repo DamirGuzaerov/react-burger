@@ -1,45 +1,33 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {addOrder} from "../thunks/order";
-import {IOrderDetails} from "../../utils/types";
+import {IOrder} from "../../utils/types";
 
 interface IOrderSlice {
-		orderDetails: IOrderDetails | null,
+		order: IOrder | null,
 		requested: boolean,
 		success: boolean,
 		failed: boolean
 }
 
 const initialState: IOrderSlice = {
-		orderDetails: null,
+		order: null,
 		requested: false,
 		success: false,
 		failed: false
 }
 
-export const order = createSlice({
+export const orderSlice = createSlice({
 		name: 'order',
 		initialState,
-		reducers: {},
-		extraReducers: (builder) => {
-				builder
-						.addCase(addOrder.fulfilled, (state, action) => {
-								state.requested = false
-								state.success = true
-								state.failed = false
-
-								state.orderDetails = action.payload
-						})
-						.addCase(addOrder.pending, (state) => {
-								state.requested = true
-								state.success = false
-								state.failed = false
-						})
-						.addCase(addOrder.rejected, (state) => {
-								state.requested = false
-								state.success = false
-								state.failed = true
-						})
+		reducers: {
+				setCurrentOrder: (state, action) => {
+						state.order = action.payload
+				},
+				removeCurrentOrder: (state) => {
+						state.order = null
+				}
 		},
 })
 
-export default order.reducer
+export const {setCurrentOrder, removeCurrentOrder} = orderSlice.actions
+
+export default orderSlice.reducer

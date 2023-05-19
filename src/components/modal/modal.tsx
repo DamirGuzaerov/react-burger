@@ -5,7 +5,7 @@ import {CloseIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import modalStyles from './modal.module.css'
 
 interface IModalProps {
-		title?: string,
+		title?: ReactNode,
 		onClose: () => void,
 		children: ReactNode | null
 }
@@ -27,9 +27,9 @@ const Modal = ({title, onClose, children}: IModalProps): JSX.Element => {
 								handleClose={onClose}>
 								<div className={modalStyles['modal-wrapper']}>
 										<header className={modalStyles.header}>
-												<h2 className={'text text_type_main-large'}>
+												<div>
 														{title}
-                        </h2>
+												</div>
 												<div className={modalStyles['close-icon']}>
 														<CloseIcon type="primary" onClick={onClose}/>
 												</div>

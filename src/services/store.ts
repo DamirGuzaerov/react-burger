@@ -3,14 +3,16 @@ import {configureStore} from "@reduxjs/toolkit";
 import ingredientsReducer from "./slices/ingredients";
 import ingredientReducer from "./slices/ingredient";
 import constructorReducer from "./slices/constructor";
-import orderReducer from "./slices/order";
+import orderDetailsReducer from "./slices/order-details";
 import userReducer from "./slices/user";
 import passwordReducer from "./slices/password";
+import orderReducer from './slices/order'
 
 const rootReducer = combineReducers({
-    burger_constructor: constructorReducer,
+    burgerConstructor: constructorReducer,
     ingredients: ingredientsReducer,
     ingredient: ingredientReducer,
+    orderDetails: orderDetailsReducer,
     order: orderReducer,
     user: userReducer,
     password: passwordReducer,

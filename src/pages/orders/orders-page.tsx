@@ -1,12 +1,32 @@
 import styles from './orders-page.module.css'
-import {OrderList} from "../../components/order-list/order-list";
+import {OrderList} from "../../components/order/order-list/order-list";
+import {useDisclosure} from "../../utils/hooks/useDisclosure";
+import {IOrder} from "../../utils/types";
+import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
+import {removeCurrentOrder, setCurrentOrder} from "../../services/slices/order";
+import {useLocation, useNavigate} from "react-router-dom";
 
 export const OrdersPage = (): JSX.Element => {
+		const dispatch = useAppDispatch()
+		const location = useLocation()
+		const navigate = useNavigate()
+
+		const {open} = useDisclosure(false,
+				{
+						onOpen: (order: IOrder) => {
+								dispatch(setCurrentOrder(order))
+								navigate(`${order._id}`, {state: {background: location, modalTitle: order.number}});
+						},
+						onClose: () => {
+								dispatch(removeCurrentOrder())
+						}
+				})
+
 		return (
 				<section className={styles.wrapper}>
 						<div className={styles.orders}>
 								<h1 className={'text text_type_main-large mb-5 pt-10'}>Лента заказов</h1>
-								<OrderList/>
+								<OrderList orderClick={open}/>
 						</div>
 						<div className={`${styles['orders-info']} mt-25 custom-scroll`}>
 								<div className={styles.panel}>
