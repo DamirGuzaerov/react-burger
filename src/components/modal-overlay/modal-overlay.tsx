@@ -10,7 +10,6 @@ interface IModalOverlayProps {
 const ModalOverlay = ({children, handleClose}: IModalOverlayProps): JSX.Element => {
 		const modalOverlayRef = useRef(null)
 
-		console.log(handleClose)
 		useModalClose(modalOverlayRef, handleClose)
 
 		return (

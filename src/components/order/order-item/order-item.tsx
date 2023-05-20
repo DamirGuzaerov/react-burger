@@ -15,7 +15,6 @@ export const OrderItem = ({order, onClick}: IOrderCardProps): JSX.Element => {
 		const ingredients = useAppSelector(state => getIngredientsByIds(state, order.ingredients))
 
 		const totalPrice = useMemo(() => {
-				console.log(ingredients)
 				return ingredients.reduce((acc, curr) => {
 						return acc + curr.count * curr.ingredient.price
 				}, 0)
@@ -53,7 +52,7 @@ export const OrderItem = ({order, onClick}: IOrderCardProps): JSX.Element => {
 									<FormattedDate date={new Date(order.createdAt)}/>
 								</span>
 						</header>
-						<p className={'text text_type_main-medium pt-6 pb-6'}>{order.number}</p>
+						<p className={'text text_type_main-medium pt-6 pb-6'}>{order.name}</p>
 						<div className={styles['ingredients-wrapper']}>
 								<div className={styles.ingredients}>
 										{ingredients && ingredients.slice(0, 6).map((el, index) => renderIngredient(el.ingredient, index))}

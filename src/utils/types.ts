@@ -35,6 +35,7 @@ export interface IOrder {
 		_id: string,
 		status: OrderStatus,
 		number: number,
+		name: string,
 		createdAt: string,
 		updatedAt: string
 }
@@ -50,14 +51,20 @@ export enum OrderStatus {
 		failed = 'failed',
 }
 
-export interface IOrdersResponse {
-		"success": boolean,
-		"orders": IOrder[],
-		"total": number,
-		"totalToday": number
-}
-
 export type CountedElement<T> = {
 		value: T;
 		count: number;
+}
+
+export enum WebsocketStatus {
+		CONNECTING,
+		ONLINE,
+		OFFLINE,
+}
+
+export interface IOrderWsMessage {
+		success: boolean,
+		orders: IOrder[],
+		total: number,
+		totalToday: number
 }

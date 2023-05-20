@@ -19,7 +19,7 @@ export const OrderIngredient = ({ingredient, count}: IOrderIngredientProps) => {
                     <p className={'text text_type_main-default'}>{ingredient.name}</p>
 								</div>
                 <div className={styles.total}>
-                    <span className={'text text_type_digits-default'}>{count} x 560</span>
+                    <span className={'text text_type_digits-default'}>{count} x {ingredient.price}</span>
                     <CurrencyIcon type="primary"/>
                 </div>
             </>}
