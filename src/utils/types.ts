@@ -48,6 +48,7 @@ export interface IUser extends IStringParams{
 
 export enum OrderStatus {
 		done = 'done',
+		created = 'created',
 		failed = 'failed',
 }
 

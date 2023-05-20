@@ -5,13 +5,17 @@ import {wsClose, wsConnecting, wsError, wsMessage, wsOpen} from "./actions";
 export interface OrdersStore {
 		status: WebsocketStatus,
 		connectionError: string,
-		orders: IOrder[]
+		orders: IOrder[],
+		total: number,
+		totalToday: number
 }
 
 const initialState: OrdersStore = {
 		status: WebsocketStatus.OFFLINE,
 		connectionError: '',
-		orders: []
+		orders: [],
+		total: 0,
+		totalToday: 0
 };
 
 export const ordersReducer = createReducer(initialState, (builder) => {
@@ -29,6 +33,8 @@ export const ordersReducer = createReducer(initialState, (builder) => {
 				})
 				.addCase(wsMessage, (state, action) => {
 						state.orders = action.payload.orders
+						state.total = action.payload.total
+						state.totalToday = action.payload.totalToday
 				})
 				.addCase(wsError, (state, action) => {
 						state.connectionError = action.payload;
