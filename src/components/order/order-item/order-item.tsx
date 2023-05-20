@@ -5,13 +5,15 @@ import {getIngredientsByIds} from "../../../services/selectors/ingredients";
 import {IIngredient, IOrder} from "../../../utils/types";
 import {useMemo} from "react";
 import {IngredientImage} from "../ingredient-image/ingredient-image";
+import {getOrderStatusText} from "../../../utils/functions";
 
 interface IOrderCardProps {
-		order: IOrder
-		onClick: (order: IOrder) => void
+		order: IOrder,
+		statusVisible?: boolean,
+		onClick: (order: IOrder) => void,
 }
 
-export const OrderItem = ({order, onClick}: IOrderCardProps): JSX.Element => {
+export const OrderItem = ({order, statusVisible = false, onClick}: IOrderCardProps): JSX.Element => {
 		const ingredients = useAppSelector(state => getIngredientsByIds(state, order.ingredients))
 
 		const totalPrice = useMemo(() => {
@@ -25,6 +27,11 @@ export const OrderItem = ({order, onClick}: IOrderCardProps): JSX.Element => {
 						onClick(order)
 				}
 		}
+
+		const orderStatus = useMemo(() => {
+				if (order && statusVisible)
+						return getOrderStatusText(order.status)
+		}, [order,statusVisible])
 
 		const renderIngredient = (ingredient: IIngredient, index: number): JSX.Element => {
 				const ingredientsCount = ingredients.length
@@ -52,7 +59,10 @@ export const OrderItem = ({order, onClick}: IOrderCardProps): JSX.Element => {
 									<FormattedDate date={new Date(order.createdAt)}/>
 								</span>
 						</header>
-						<p className={'text text_type_main-medium pt-6 pb-6'}>{order.name}</p>
+						<p className={'text text_type_main-medium pt-6 mb-2'}>{order.name}</p>
+						{orderStatus && statusVisible && <>
+                <p className={`text text_type_main-default text_color_${orderStatus.color} mb-6`}>{orderStatus.text}</p>
+            </>}
 						<div className={styles['ingredients-wrapper']}>
 								<div className={styles.ingredients}>
 										{ingredients && ingredients.slice(0, 6).map((el, index) => renderIngredient(el.ingredient, index))}

@@ -4,19 +4,23 @@ import {useEffect} from "react";
 import {clearConstructor} from "../../../services/slices/constructor";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
+import {OrderStatus} from "../../../utils/types";
 
 const OrderDetails = (): JSX.Element => {
 		const orderDetails = useAppSelector(state => state.orderDetails.orderDetails)
 		const dispatch = useAppDispatch()
-		const currentOrder = useAppSelector(state => state.userOrders.orders.at(-1))
+		const currentOrder = useAppSelector(state => state.userOrders.orders.at(0))
 
 		useEffect(() => {
-				if (orderDetails)
+				if (currentOrder)
 						dispatch(clearConstructor())
-		}, [dispatch, orderDetails])
+		}, [currentOrder, dispatch, orderDetails])
+
 		return (
 				<div className={orderDetailsStyles.container}>
-						<h1 className={`${orderDetailsStyles['order-id']} text text_type_digits-large mb-8 pt-4`}>{currentOrder && currentOrder.number}</h1>
+						<h1 className={`${orderDetailsStyles['order-id']} text text_type_digits-large mb-8 pt-4`}>
+								{currentOrder && currentOrder.status !== OrderStatus.done && currentOrder.number}
+						</h1>
 						<span className={'text text_type_main-default'}>Идентификатор заказа</span>
 						<img
 								className={'pt-15 mb-15'}

@@ -12,10 +12,20 @@ export function getOrderStatusText(status: OrderStatus): { text: string, color: 
 								text: 'Отменено',
 								color: 'error',
 						};
+				case OrderStatus.pending:
+						return {
+								text: 'Готовится',
+								color: 'primary',
+						};
+				case OrderStatus.created:
+						return {
+								text: 'Cоздан',
+								color: 'primary',
+						};
 				default:
 						return {
-								text: 'Неизвестный статус',
-								color: 'default',
+								text: 'Статус недоступен',
+								color: 'primary',
 						};
 		}
 }

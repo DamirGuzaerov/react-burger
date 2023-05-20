@@ -12,7 +12,6 @@ export const Order = (): JSX.Element => {
 		const {id} = useParams()
 		const order = useAppSelector(state => getOrderById(state, id))
 		const ingredients = useAppSelector(state => order ? getIngredientsByIds(state, order.ingredients) : null)
-
 		const orderStatus = useMemo(() => {
 				if (order)
 						return getOrderStatusText(order.status)

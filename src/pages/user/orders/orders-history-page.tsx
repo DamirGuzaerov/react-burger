@@ -3,13 +3,24 @@ import {useDisclosure} from "../../../utils/hooks/useDisclosure";
 import {IOrder} from "../../../utils/types";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";
+import {useEffect} from "react";
+import {wsClose, wsOpen} from "../../../services/slices/user-orders/actions";
+import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 
 export const OrdersHistoryPage = (): JSX.Element => {
 		const location = useLocation()
 		const navigate = useNavigate()
 
+		const dispatch = useAppDispatch()
+
 		const orders = useAppSelector(state => state.userOrders.orders)
 
+		useEffect(()=>{
+				dispatch(wsOpen())
+				return () => {
+						dispatch(wsClose())
+				}
+		},[dispatch])
 		const {open} = useDisclosure(false,
 				{
 						onOpen: (order: IOrder) => {
@@ -18,6 +29,6 @@ export const OrdersHistoryPage = (): JSX.Element => {
 				})
 
 		return (
-				<OrderList orders={orders} orderClick={open}/>
+				<OrderList statusVisible orders={orders} orderClick={open}/>
 		)
 }

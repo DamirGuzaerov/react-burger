@@ -24,7 +24,6 @@ export const socketMiddleware: any = (wsActions: TwsActionTypes): Middleware<{},
 						const { dispatch } = store;
 						const { wsConnect, wsDisconnect, wsSendMessage, onOpen,
 								onClose, onError, onMessage, wsConnecting } = wsActions;
-
 						if (wsConnect.match(action)) {
 								console.log('connect')
 								url = action.payload;

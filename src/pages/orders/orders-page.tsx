@@ -5,14 +5,26 @@ import {IOrder} from "../../utils/types";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useAppSelector} from "../../utils/hooks/useAppSelector";
 import {getDoneOrders, getInProgressOrders} from "../../services/selectors/orders";
+import {useEffect} from "react";
+import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
+import {wsClose, wsOpen} from '../../services/slices/orders/actions';
 
 export const OrdersPage = (): JSX.Element => {
 		const location = useLocation()
 		const navigate = useNavigate()
 
+		const dispatch = useAppDispatch()
+
 		const {orders, total, totalToday} = useAppSelector(state => state.orders)
 		const doneOrders = useAppSelector(getDoneOrders)
 		const inProgressOrders = useAppSelector(getInProgressOrders)
+
+		useEffect(()=>{
+				dispatch(wsOpen())
+				return () => {
+						dispatch(wsClose())
+				}
+		},[dispatch])
 
 		const {open} = useDisclosure(false,
 				{
