@@ -3,7 +3,7 @@ import {useAppSelector} from "../../utils/hooks/useAppSelector";
 import styles from './order.module.css'
 import {useMemo} from "react";
 import {getOrderStatusText} from "../../utils/functions";
-import {FormattedDate} from "@ya.praktikum/react-developer-burger-ui-components";
+import {CurrencyIcon, FormattedDate} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useParams} from "react-router-dom";
 import {getOrderById} from "../../services/selectors/orders";
 import {getIngredientsByIds} from "../../services/selectors/ingredients";
@@ -17,6 +17,12 @@ export const Order = (): JSX.Element => {
 				if (order)
 						return getOrderStatusText(order.status)
 		}, [order])
+
+		const totalPrice = useMemo(() => {
+				return ingredients?.reduce((acc, curr) => {
+						return acc + curr.count * curr.ingredient.price
+				}, 0)
+		}, [ingredients])
 
 		return (
 				<div className={styles.wrapper}>
@@ -37,6 +43,10 @@ export const Order = (): JSX.Element => {
                     <p className={'text text_type_main-default text_color_inactive'}>
                         <FormattedDate date={new Date(order.updatedAt)}/>
                     </p>
+                    <div className={styles.total}>
+                        <span className={'text text_type_digits-default'}>{totalPrice}</span>
+                        <CurrencyIcon type="primary"/>
+                    </div>
                 </footer>
             </>}
 				</div>
