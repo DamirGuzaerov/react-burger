@@ -15,7 +15,7 @@ import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
 
 const BurgerConstructor = (): JSX.Element => {
 		const {bun, ingredients} = useAppSelector(state => state.burgerConstructor)
-		const {requested, success, failed} = useAppSelector(state => state.orderDetails)
+		const {requested, failed} = useAppSelector(state => state.orderDetails)
 		const dispatch = useAppDispatch()
 		const {isOpen, open, close} = useDisclosure(false)
 		const handleClick = () => {
@@ -91,6 +91,7 @@ const BurgerConstructor = (): JSX.Element => {
 												htmlType="button"
 												type="primary"
 												size="medium"
+												disabled={requested}
 												onClick={handleClick}
 										>
                 <span className={'text text_type_main-default'}>
@@ -102,7 +103,7 @@ const BurgerConstructor = (): JSX.Element => {
 								</div>
 								{failed && <p className={'text text_color_error text_type_main-default'}>Ошибка в заказе</p>}
 						</section>
-						{isOpen && success &&
+						{isOpen && requested &&
                 <Modal
                     onClose={close}>
                     <OrderDetails/>

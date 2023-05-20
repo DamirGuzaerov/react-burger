@@ -10,5 +10,5 @@ export const getDoneOrders = (state:RootState) => {
 }
 
 export const getInProgressOrders = (state:RootState) => {
-  return state.orders.orders.filter(el=>el.status === OrderStatus.created)
+  return state.orders.orders.filter(el=>el.status === OrderStatus.pending)
 }

@@ -8,6 +8,7 @@ export const ProfileLayout = (): JSX.Element => {
 		const logout = () => {
 				dispatch(logoutUser())
 		}
+
 		return (
 				<div className={layoutStyles['profile-wrapper']}>
 						<div className={layoutStyles.info}>

@@ -50,7 +50,7 @@ export const socketMiddleware: any = (wsActions: TwsActionTypes): Middleware<{},
 
 								socket.onclose = event => {
 										if (event.code !== 1000) {
-												console.log('error')
+												console.log('error',event.code)
 												dispatch(onError(event.code.toString()));
 										}
 										console.log('close')

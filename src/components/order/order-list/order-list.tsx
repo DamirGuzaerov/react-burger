@@ -1,15 +1,13 @@
 import {OrderItem} from "../order-item/order-item";
 import styles from './order-list.module.css'
 import {IOrder} from "../../../utils/types";
-import {useAppSelector} from "../../../utils/hooks/useAppSelector";
-
 
 interface IOrderListProps {
+		orders: IOrder[],
 		orderClick: (order: IOrder) => void
 }
 
-export const OrderList = ({orderClick}: IOrderListProps): JSX.Element => {
-		const orders = useAppSelector(state => state.orders.orders)
+export const OrderList = ({orders, orderClick}: IOrderListProps): JSX.Element => {
 		return (
 				<section className={`${styles.wrapper} custom-scroll`}>
 						<ul className={`${styles.orders}`}>

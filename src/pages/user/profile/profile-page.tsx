@@ -21,7 +21,6 @@ export const ProfilePage = () => {
 				e.preventDefault()
 				dispatch(editUser(form as IUser))
 		}
-
 		return (
 				<form className={profileStyles.form} onSubmit={handleSubmit}>
 						<div className={'mb-20'}>

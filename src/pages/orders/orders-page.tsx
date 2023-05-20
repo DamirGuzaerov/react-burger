@@ -10,7 +10,7 @@ export const OrdersPage = (): JSX.Element => {
 		const location = useLocation()
 		const navigate = useNavigate()
 
-		const {total,totalToday} = useAppSelector(state=>state.orders)
+		const {orders, total, totalToday} = useAppSelector(state => state.orders)
 		const doneOrders = useAppSelector(getDoneOrders)
 		const inProgressOrders = useAppSelector(getInProgressOrders)
 
@@ -25,23 +25,23 @@ export const OrdersPage = (): JSX.Element => {
 				<section className={styles.wrapper}>
 						<div className={styles.orders}>
 								<h1 className={'text text_type_main-large mb-5 pt-10'}>Лента заказов</h1>
-								<OrderList orderClick={open}/>
+								<OrderList orders={orders} orderClick={open}/>
 						</div>
 						<div className={`${styles['orders-info']} mt-25 custom-scroll`}>
 								<div className={styles.panel}>
 										<div className={`${styles['orders-status-wrapper']} custom-scroll`}>
 												<p className={'text text_type_main-medium mb-6'}>Готовы:</p>
 												<ul className={`${styles['order-numbers']} text text_type_digits-default text_color_success`}>
-														{doneOrders && doneOrders.map(el=>(
-																<li className={styles['order-number']}>{el.number}</li>
+														{doneOrders && doneOrders.map(el => (
+																<li key={el._id+el.number} className={styles['order-number']}>{el.number}</li>
 														))}
 												</ul>
 										</div>
 										<div className={`${styles['orders-status-wrapper']} custom-scroll`}>
 												<p className={'text text_type_main-medium mb-6'}>В работе:</p>
 												<ul className={`${styles['order-numbers']} text text_type_digits-default text_color_primary`}>
-														{inProgressOrders && inProgressOrders.map(el=>(
-																<li className={styles['order-number']}>{el.number}</li>
+														{inProgressOrders && inProgressOrders.map(el => (
+																<li key={el._id+el.number} className={styles['order-number']}>{el.number}</li>
 														))}
 												</ul>
 										</div>

@@ -8,6 +8,7 @@ import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 const OrderDetails = (): JSX.Element => {
 		const orderDetails = useAppSelector(state => state.orderDetails.orderDetails)
 		const dispatch = useAppDispatch()
+		const currentOrder = useAppSelector(state => state.userOrders.orders.at(-1))
 
 		useEffect(() => {
 				if (orderDetails)
@@ -15,7 +16,7 @@ const OrderDetails = (): JSX.Element => {
 		}, [dispatch, orderDetails])
 		return (
 				<div className={orderDetailsStyles.container}>
-						<h1 className={`${orderDetailsStyles['orderDetails-id']} text text_type_digits-large mb-8 pt-4`}>{orderDetails && orderDetails.order.number}</h1>
+						<h1 className={`${orderDetailsStyles['order-id']} text text_type_digits-large mb-8 pt-4`}>{currentOrder && currentOrder.number}</h1>
 						<span className={'text text_type_main-default'}>Идентификатор заказа</span>
 						<img
 								className={'pt-15 mb-15'}

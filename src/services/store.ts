@@ -7,6 +7,7 @@ import userReducer from "./slices/user";
 import passwordReducer from "./slices/password";
 import {ordersReducer} from './slices/orders/reducer';
 import {socketMiddleware} from "./middleware/socket-middleware";
+
 import {
     connect as OrdersWsConnect,
     disconnect as OrdersWsDisconnect,
@@ -17,7 +18,18 @@ import {
     wsError as OrdersWsError
 } from "./slices/orders/actions";
 
-const wsActions = {
+import {
+    connect as UserOrdersWsConnect,
+    disconnect as UserOrdersWsDisconnect,
+    wsConnecting as UserOrdersWsConnecting,
+    wsOpen as UserOrdersWsOpen,
+    wsClose as UserOrdersWsClose,
+    wsMessage as UserOrdersWsNessage,
+    wsError as UserOrdersWsError
+} from "./slices/user-orders/actions";
+import {userOrdersReducer} from "./slices/user-orders/reducer";
+
+const wsOrdersActions = {
     wsConnect: OrdersWsConnect,
     wsDisconnect: OrdersWsDisconnect,
     wsConnecting: OrdersWsConnecting,
@@ -27,20 +39,32 @@ const wsActions = {
     onMessage: OrdersWsNessage,
 };
 
+const wsUserOrdersActions = {
+    wsConnect: UserOrdersWsConnect,
+    wsDisconnect: UserOrdersWsDisconnect,
+    wsConnecting: UserOrdersWsConnecting,
+    onOpen: UserOrdersWsOpen,
+    onClose: UserOrdersWsClose,
+    onError: UserOrdersWsError,
+    onMessage: UserOrdersWsNessage,
+};
+
 const rootReducer = combineReducers({
     burgerConstructor: constructorReducer,
     ingredients: ingredientsReducer,
     orderDetails: orderDetailsReducer,
     user: userReducer,
     password: passwordReducer,
-    orders: ordersReducer
+    orders: ordersReducer,
+    userOrders: userOrdersReducer
 });
 
-const ordersMiddleware = socketMiddleware(wsActions);
+const ordersMiddleware = socketMiddleware(wsOrdersActions);
+const userOrdersMiddleware = socketMiddleware(wsUserOrdersActions);
 export const mainStore = configureStore({
         reducer: rootReducer,
         devTools: true,
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(ordersMiddleware)
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(ordersMiddleware,userOrdersMiddleware)
     })
 
 export type RootState = ReturnType<typeof mainStore.getState>;

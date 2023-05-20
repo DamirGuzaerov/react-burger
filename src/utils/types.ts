@@ -50,6 +50,7 @@ export enum OrderStatus {
 		done = 'done',
 		created = 'created',
 		failed = 'failed',
+		pending = 'pending'
 }
 
 export type CountedElement<T> = {
