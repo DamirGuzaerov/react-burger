@@ -4,8 +4,9 @@ import {IOrder} from "../../../utils/types";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 import {useEffect} from "react";
-import {wsClose, wsOpen} from "../../../services/slices/user-orders/actions";
+import {connect as connectUserOrders, wsClose} from "../../../services/slices/user-orders/actions";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
+import {USER_ORDERS_SERVER_URL} from "../../../utils/constants";
 
 export const OrdersHistoryPage = (): JSX.Element => {
 		const location = useLocation()
@@ -16,7 +17,8 @@ export const OrdersHistoryPage = (): JSX.Element => {
 		const orders = useAppSelector(state => state.userOrders.orders)
 
 		useEffect(()=>{
-				dispatch(wsOpen())
+				let token = localStorage.getItem('accessToken');
+				dispatch(connectUserOrders(USER_ORDERS_SERVER_URL + `?token=${token}`))
 				return () => {
 						dispatch(wsClose())
 				}

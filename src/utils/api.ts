@@ -32,6 +32,7 @@ export const fetchWithRefresh = async (url: string, options: RequestInit) => {
 				if (err === "jwt expired") {
 						const refreshData = await refreshToken();
 						if (!refreshData.success) {
+								console.log(refreshData)
 								return Promise.reject(refreshData);
 						}
 						const accessToken = refreshData.accessToken.split(' ')[1]

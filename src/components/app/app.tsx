@@ -20,8 +20,7 @@ import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
 import {Order} from "../order/order";
 import {OrderPage} from "../../pages/order/order-page";
 import {connect as connectOrders} from '../../services/slices/orders/actions'
-import {connect as connectUserOrders} from '../../services/slices/user-orders/actions'
-import {ORDERS_SERVER_URL, USER_ORDERS_SERVER_URL} from "../../utils/constants";
+import {ORDERS_SERVER_URL} from "../../utils/constants";
 
 function App(): JSX.Element {
 		const dispatch = useAppDispatch()
@@ -34,11 +33,11 @@ function App(): JSX.Element {
 		};
 
 		useEffect(() => {
-				let token = localStorage.getItem('accessToken');
+
 				dispatch(getUser())
 				dispatch(getBurgerIngredients())
 				dispatch(connectOrders(ORDERS_SERVER_URL))
-				dispatch(connectUserOrders(USER_ORDERS_SERVER_URL+`?token=${token}`))
+
 		}, [dispatch])
 
 		return (
