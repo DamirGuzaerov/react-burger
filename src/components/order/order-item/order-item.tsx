@@ -13,10 +13,11 @@ interface IOrderCardProps {
 
 export const OrderItem = ({order, onClick}: IOrderCardProps): JSX.Element => {
 		const ingredients = useAppSelector(state => getIngredientsByIds(state, order.ingredients))
+
 		const totalPrice = useMemo(() => {
+				console.log(ingredients)
 				return ingredients.reduce((acc, curr) => {
-						if (curr.type === 'bun') return acc + 2 * curr.price
-						return acc + curr.price
+						return acc + curr.count * curr.ingredient.price
 				}, 0)
 		}, [ingredients])
 
@@ -55,7 +56,7 @@ export const OrderItem = ({order, onClick}: IOrderCardProps): JSX.Element => {
 						<p className={'text text_type_main-medium pt-6 pb-6'}>{order.number}</p>
 						<div className={styles['ingredients-wrapper']}>
 								<div className={styles.ingredients}>
-										{ingredients && ingredients.slice(0, 6).map((el: IIngredient, index: number) => renderIngredient(el, index))}
+										{ingredients && ingredients.slice(0, 6).map((el, index) => renderIngredient(el.ingredient, index))}
 								</div>
 								<div className={styles.total}>
 										<span className={'text text_type_digits-default'}>{totalPrice}</span>

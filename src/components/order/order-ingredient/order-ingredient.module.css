@@ -1,0 +1,16 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ingredient {
+    display: flex;
+    align-items: center;
+}
+
+.total {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}

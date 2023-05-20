@@ -19,6 +19,7 @@ import {OrdersPage} from "../../pages/orders/orders-page";
 import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
 import {Order} from "../order/order";
 import {OrderPage} from "../../pages/order/order-page";
+import {getAllOrders} from "../../services/thunks/order";
 
 function App(): JSX.Element {
 		const dispatch = useAppDispatch()
@@ -33,6 +34,7 @@ function App(): JSX.Element {
 		useEffect(() => {
 				dispatch(getUser())
 				dispatch(getBurgerIngredients())
+				dispatch(getAllOrders())
 		}, [dispatch])
 
 		return (

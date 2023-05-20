@@ -3,11 +3,8 @@ import React, {RefObject, useEffect, useRef, useState} from "react";
 import burgerIngredientsStyles from './burger-ingredients.module.css'
 import IngredientsGroup from "./ingredients-group/ingredients-group";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
-import {useDispatch} from "react-redux";
-import {removeCurrentIngredient, setCurrentIngredient} from "../../services/slices/ingredient";
 import {getIngredients} from "../../services/selectors/ingredients";
 import {useAppSelector} from "../../utils/hooks/useAppSelector";
-import {IIngredient} from "../../utils/types";
 
 const BurgerIngredients = (): JSX.Element => {
     const ingredients = useAppSelector(getIngredients)
@@ -19,16 +16,7 @@ const BurgerIngredients = (): JSX.Element => {
     const secondTitleRef = useRef<HTMLHeadingElement>(null)
     const thirdTitleRef = useRef<HTMLHeadingElement>(null)
 
-    const dispatch = useDispatch()
-    const {open} = useDisclosure(false,
-        {
-            onOpen: (ingredient: IIngredient) => {
-                dispatch(setCurrentIngredient(ingredient))
-            },
-            onClose: () => {
-                dispatch(removeCurrentIngredient())
-            }
-        })
+    const {open} = useDisclosure(false)
 
     const handleTabClick = (ref:RefObject<HTMLHeadingElement>) => {
         ref.current?.scrollIntoView({behavior: 'smooth'});

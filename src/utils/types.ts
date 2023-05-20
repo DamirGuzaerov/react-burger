@@ -33,7 +33,7 @@ export interface IOrderDetails {
 export interface IOrder {
 		ingredients: string[],
 		_id: string,
-		status: string,
+		status: OrderStatus,
 		number: number,
 		createdAt: string,
 		updatedAt: string
@@ -45,3 +45,19 @@ export interface IUser extends IStringParams{
 	password: string | undefined;
 }
 
+export enum OrderStatus {
+		done = 'done',
+		failed = 'failed',
+}
+
+export interface IOrdersResponse {
+		"success": boolean,
+		"orders": IOrder[],
+		"total": number,
+		"totalToday": number
+}
+
+export type CountedElement<T> = {
+		value: T;
+		count: number;
+}

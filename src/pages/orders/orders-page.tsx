@@ -2,23 +2,16 @@ import styles from './orders-page.module.css'
 import {OrderList} from "../../components/order/order-list/order-list";
 import {useDisclosure} from "../../utils/hooks/useDisclosure";
 import {IOrder} from "../../utils/types";
-import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
-import {removeCurrentOrder, setCurrentOrder} from "../../services/slices/order";
 import {useLocation, useNavigate} from "react-router-dom";
 
 export const OrdersPage = (): JSX.Element => {
-		const dispatch = useAppDispatch()
 		const location = useLocation()
 		const navigate = useNavigate()
 
 		const {open} = useDisclosure(false,
 				{
 						onOpen: (order: IOrder) => {
-								dispatch(setCurrentOrder(order))
 								navigate(`${order._id}`, {state: {background: location, modalTitle: order.number}});
-						},
-						onClose: () => {
-								dispatch(removeCurrentOrder())
 						}
 				})
 
@@ -69,13 +62,13 @@ export const OrdersPage = (): JSX.Element => {
 										<p className={'text text_type_main-medium'}>
 												Выполенно за все время:
 										</p>
-										<span className={`${styles['orders-count']} text text_type_digits-large`}>65376</span>
+										<p className={`${styles['orders-count']} text text_type_digits-large`}>65376</p>
 								</div>
 								<div>
 										<p className={'text text_type_main-medium'}>
 												Выполенно за сегодня:
 										</p>
-										<span className={`${styles['orders-count']} text text_type_digits-large`}>653</span>
+										<p className={`${styles['orders-count']} text text_type_digits-large`}>653</p>
 								</div>
 						</div>
 				</section>
