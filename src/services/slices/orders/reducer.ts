@@ -23,8 +23,7 @@ export const ordersReducer = createReducer(initialState, (builder) => {
 				.addCase(wsConnecting, (state) => {
 						state.status = WebsocketStatus.CONNECTING;
 				})
-				.addCase(wsOpen, (state,action) => {
-						console.log('open',action.payload)
+				.addCase(wsOpen, (state) => {
 						state.status = WebsocketStatus.ONLINE;
 						state.connectionError = '';
 				})

@@ -19,8 +19,6 @@ import {OrdersPage} from "../../pages/orders/orders-page";
 import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
 import {Order} from "../order/order";
 import {OrderPage} from "../../pages/order/order-page";
-import {connect as connectOrders} from '../../services/slices/orders/actions'
-import {ORDERS_SERVER_URL} from "../../utils/constants";
 
 function App(): JSX.Element {
 		const dispatch = useAppDispatch()
@@ -33,11 +31,8 @@ function App(): JSX.Element {
 		};
 
 		useEffect(() => {
-
 				dispatch(getUser())
 				dispatch(getBurgerIngredients())
-				dispatch(connectOrders(ORDERS_SERVER_URL))
-
 		}, [dispatch])
 
 		return (
@@ -100,7 +95,6 @@ function App(): JSX.Element {
 						)
 						}
 				</>
-
 		);
 }
 

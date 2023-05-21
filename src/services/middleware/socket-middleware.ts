@@ -25,7 +25,6 @@ export const socketMiddleware: Function = (wsActions: TwsActionTypes): Middlewar
 						const { wsConnect, wsDisconnect, wsSendMessage, onOpen,
 								onClose, onError, onMessage, wsConnecting } = wsActions;
 						if (wsConnect.match(action)) {
-								console.log('connect')
 								url = action.payload;
 								socket = new WebSocket(url);
 								isConnected = true;
@@ -37,10 +36,6 @@ export const socketMiddleware: Function = (wsActions: TwsActionTypes): Middlewar
 										dispatch(onOpen());
 								};
 
-								socket.onerror = err  => {
-										console.log('error',err)
-								};
-
 								socket.onmessage = event => {
 										const { data } = event;
 										const parsedData = JSON.parse(data);
@@ -49,10 +44,8 @@ export const socketMiddleware: Function = (wsActions: TwsActionTypes): Middlewar
 
 								socket.onclose = event => {
 										if (event.code !== 1000) {
-												console.log('error',event.code)
 												dispatch(onError(event.code.toString()));
 										}
-										console.log('close')
 										dispatch(onClose());
 
 										if (isConnected) {
@@ -65,16 +58,14 @@ export const socketMiddleware: Function = (wsActions: TwsActionTypes): Middlewar
 								};
 
 								if (wsSendMessage && wsSendMessage.match(action)) {
-										console.log('send')
 										socket.send(JSON.stringify(action.payload));
 								}
 
 								if (wsDisconnect.match(action)) {
-										console.log('disconnect')
 										clearTimeout(reconnectTimer)
 										isConnected = false;
 										reconnectTimer = 0;
-										socket.close();
+										socket.close(1000)
 										dispatch(onClose());
 								}
 						}

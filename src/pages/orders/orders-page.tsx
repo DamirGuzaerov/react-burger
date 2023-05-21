@@ -7,7 +7,8 @@ import {useAppSelector} from "../../utils/hooks/useAppSelector";
 import {getDoneOrders, getInProgressOrders} from "../../services/selectors/orders";
 import {useEffect} from "react";
 import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
-import {wsClose, wsOpen} from '../../services/slices/orders/actions';
+import {connect as connectOrders, disconnect} from '../../services/slices/orders/actions';
+import {ORDERS_SERVER_URL} from "../../utils/constants";
 
 export const OrdersPage = (): JSX.Element => {
 		const location = useLocation()
@@ -20,9 +21,9 @@ export const OrdersPage = (): JSX.Element => {
 		const inProgressOrders = useAppSelector(getInProgressOrders)
 
 		useEffect(()=>{
-				dispatch(wsOpen())
+				dispatch(connectOrders(ORDERS_SERVER_URL))
 				return () => {
-						dispatch(wsClose())
+						dispatch(disconnect())
 				}
 		},[dispatch])
 

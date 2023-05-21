@@ -4,7 +4,7 @@ import {IOrder} from "../../../utils/types";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 import {useEffect} from "react";
-import {connect as connectUserOrders, wsClose} from "../../../services/slices/user-orders/actions";
+import {connect as connectUserOrders, disconnect} from "../../../services/slices/user-orders/actions";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 import {USER_ORDERS_SERVER_URL} from "../../../utils/constants";
 
@@ -20,9 +20,10 @@ export const OrdersHistoryPage = (): JSX.Element => {
 				let token = localStorage.getItem('accessToken');
 				dispatch(connectUserOrders(USER_ORDERS_SERVER_URL + `?token=${token}`))
 				return () => {
-						dispatch(wsClose())
+						dispatch(disconnect())
 				}
 		},[dispatch])
+
 		const {open} = useDisclosure(false,
 				{
 						onOpen: (order: IOrder) => {
