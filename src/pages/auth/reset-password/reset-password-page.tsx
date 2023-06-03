@@ -3,7 +3,7 @@ import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components"
 import {Link, Navigate, useLocation} from "react-router-dom";
 import {useForm} from "../../../utils/hooks/useForm";
 import {useDisclosure} from "../../../utils/hooks/useDisclosure";
-import {resetPassword} from "../../../services/thunks/password";
+import {resetPassword} from "../../../services/thunks/password/password";
 import loader from "../../../images/loader.svg";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";

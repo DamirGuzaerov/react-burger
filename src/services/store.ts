@@ -1,10 +1,10 @@
 import {combineReducers} from "redux";
-import {configureStore} from "@reduxjs/toolkit";
-import ingredientsReducer from "./slices/ingredients";
-import constructorReducer from "./slices/constructor";
-import orderDetailsReducer from "./slices/order-details";
-import userReducer from "./slices/user";
-import passwordReducer from "./slices/password";
+import {configureStore, PreloadedState} from "@reduxjs/toolkit";
+import ingredientsReducer from "./slices/ingredients/ingredients";
+import constructorReducer from "./slices/constructor/constructor";
+import orderDetailsReducer from "./slices/order-details/order-details";
+import userReducer from "./slices/user/user";
+import passwordReducer from "./slices/password/password";
 import {ordersReducer} from './slices/orders/reducer';
 import {socketMiddleware} from "./middleware/socket-middleware";
 
@@ -61,12 +61,18 @@ const rootReducer = combineReducers({
 
 const ordersMiddleware = socketMiddleware(wsOrdersActions);
 const userOrdersMiddleware = socketMiddleware(wsUserOrdersActions);
-export const mainStore = configureStore({
+
+export const setupStore = (preloadedState?: PreloadedState<RootState>)=> {
+    return configureStore({
         reducer: rootReducer,
         devTools: true,
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(ordersMiddleware,userOrdersMiddleware)
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(ordersMiddleware,userOrdersMiddleware),
+        ...preloadedState
     })
+}
 
-export type RootState = ReturnType<typeof mainStore.getState>;
+export const mainStore = setupStore()
 
-export type AppDispatch = typeof mainStore.dispatch;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch'];

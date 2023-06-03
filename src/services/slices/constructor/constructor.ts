@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {IConstructorIngredient} from "../../utils/types";
+import {IConstructorIngredient} from "../../../utils/types";
 
 interface IConstructorSlice {
     bun: IConstructorIngredient | null,

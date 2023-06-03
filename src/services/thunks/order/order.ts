@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {fetchWithRefresh} from "../../utils/api";
-import {IConstructorIngredient} from "../../utils/types";
+import {fetchWithRefresh} from "../../../utils/api";
+import {IConstructorIngredient} from "../../../utils/types";
 
 export const addOrder = createAsyncThunk(
 		'orderDetails/postOrderStatus',

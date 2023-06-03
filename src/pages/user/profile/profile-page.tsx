@@ -1,7 +1,7 @@
 import {useForm} from "../../../utils/hooks/useForm";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import profileStyles from './profile-page.module.css'
-import {editUser} from "../../../services/thunks/user";
+import {editUser} from "../../../services/thunks/user/user";
 import {Link} from "react-router-dom";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";

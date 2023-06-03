@@ -1,7 +1,7 @@
 import orderDetailsStyles from './order-details.module.css'
 import orderAcceptedImage from '../../../images/orderAcceptedImage.png'
 import {useEffect} from "react";
-import {clearConstructor} from "../../../services/slices/constructor";
+import {clearConstructor} from "../../../services/slices/constructor/constructor";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 import {connect as connectUserOrders, disconnect} from "../../../services/slices/user-orders/actions";

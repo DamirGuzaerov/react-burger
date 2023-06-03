@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {fetchWithRefresh, request} from "../../utils/api";
-import {IUser} from "../../utils/types";
+import {fetchWithRefresh, request} from "../../../utils/api";
+import {IUser} from "../../../utils/types";
 
 export const login = createAsyncThunk(
 		'auth/loginStatus',

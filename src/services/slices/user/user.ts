@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {editUser, getUser, login, logout, register} from "../thunks/user";
-import {IUser} from "../../utils/types";
+import {editUser, getUser, login, logout, register} from "../../thunks/user/user";
+import {IUser} from "../../../utils/types";
 
 interface IUserSlice {
 		user: IUser | null,

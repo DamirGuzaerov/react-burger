@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getPasswordResetCode, resetPassword} from "../thunks/password";
+import {getPasswordResetCode, resetPassword} from "../../thunks/password/password";
 
 interface IPasswordSlice {
 		passwordResetCodeRequested: boolean,

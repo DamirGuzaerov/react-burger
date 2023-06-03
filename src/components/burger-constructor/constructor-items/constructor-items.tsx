@@ -2,7 +2,7 @@ import constructorItemsStyles from "./constructor-items.module.css";
 import {useDispatch} from "react-redux";
 import ConstructorItem from "../constructor-item/constructor-item";
 import {useCallback} from "react";
-import {sortIngredients} from "../../../services/slices/constructor";
+import {sortIngredients} from "../../../services/slices/constructor/constructor";
 import {IConstructorIngredient} from "../../../utils/types";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 

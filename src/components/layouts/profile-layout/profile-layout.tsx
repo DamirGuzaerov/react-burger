@@ -1,6 +1,6 @@
 import layoutStyles from './profile-layout.module.css'
 import {Link, NavLink, Outlet} from "react-router-dom";
-import {logout as logoutUser} from "../../../services/thunks/user";
+import {logout as logoutUser} from "../../../services/thunks/user/user";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 
 export const ProfileLayout = (): JSX.Element => {

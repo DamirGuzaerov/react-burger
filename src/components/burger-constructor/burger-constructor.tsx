@@ -8,8 +8,8 @@ import {useDisclosure} from "../../utils/hooks/useDisclosure";
 import ripple from '../../images/ripple.svg'
 import loader from '../../images/loader.svg'
 import {useDrop} from "react-dnd";
-import {addIngredient} from "../../services/slices/constructor";
-import {addOrder} from "../../services/thunks/order";
+import {addIngredient} from "../../services/slices/constructor/constructor";
+import {addOrder} from "../../services/thunks/order/order";
 import {useAppSelector} from "../../utils/hooks/useAppSelector";
 import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
 
