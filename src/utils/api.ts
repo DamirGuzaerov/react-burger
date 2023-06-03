@@ -10,7 +10,6 @@ export const checkResponse = async (res: Response) => {
 }
 
 export const request = (url: string, options: RequestInit = {}) => {
-		console.log(url, options)
 		return fetch(BASE_URL + url, options).then(checkResponse)
 }
 

@@ -2,22 +2,22 @@ import {createSlice} from "@reduxjs/toolkit";
 import {addOrder} from "../thunks/order";
 import {IOrderDetails} from "../../utils/types";
 
-interface IOrderSlice {
+interface IOrderDetailsSlice {
 		orderDetails: IOrderDetails | null,
 		requested: boolean,
 		success: boolean,
 		failed: boolean
 }
 
-const initialState: IOrderSlice = {
+const initialState: IOrderDetailsSlice = {
 		orderDetails: null,
 		requested: false,
 		success: false,
 		failed: false
 }
 
-export const order = createSlice({
-		name: 'order',
+export const orderDetails = createSlice({
+		name: 'orderDetails',
 		initialState,
 		reducers: {},
 		extraReducers: (builder) => {
@@ -42,4 +42,5 @@ export const order = createSlice({
 		},
 })
 
-export default order.reducer
+export default orderDetails.reducer
+

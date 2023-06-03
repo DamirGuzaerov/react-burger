@@ -30,9 +30,43 @@ export interface IOrderDetails {
 		}
 }
 
+export interface IOrder {
+		ingredients: string[],
+		_id: string,
+		status: OrderStatus,
+		number: number,
+		name: string,
+		createdAt: string,
+		updatedAt: string
+}
+
 export interface IUser extends IStringParams{
 	email: string;
 	name: string | undefined;
 	password: string | undefined;
 }
 
+export enum OrderStatus {
+		done = 'done',
+		created = 'created',
+		failed = 'failed',
+		pending = 'pending'
+}
+
+export type CountedElement<T> = {
+		value: T;
+		count: number;
+}
+
+export enum WebsocketStatus {
+		CONNECTING,
+		ONLINE,
+		OFFLINE,
+}
+
+export interface IOrderWsMessage {
+		success: boolean,
+		orders: IOrder[],
+		total: number,
+		totalToday: number
+}

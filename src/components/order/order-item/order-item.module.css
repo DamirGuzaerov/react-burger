@@ -1,0 +1,35 @@
+.wrapper{
+    background: #1C1C21;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06), 0 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 40px;
+
+    min-height: 214px;
+
+    cursor: pointer;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ingredients-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ingredients{
+    position: relative;
+    height: 64px;
+}
+
+.ingredient{
+    position: absolute;
+}
+
+.total{
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}

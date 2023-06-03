@@ -8,6 +8,8 @@
     width: 100%;
 
     max-width: 1280px;
+
+    overflow: auto;
 }
 
 .info{
@@ -23,4 +25,9 @@
 
 .description{
     opacity: .4;
+}
+
+.content{
+    width: 100%;
+    overflow: hidden;
 }

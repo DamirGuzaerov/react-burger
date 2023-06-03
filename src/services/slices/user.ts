@@ -41,8 +41,7 @@ export const userSlice = createSlice({
 						.addCase(editUser.fulfilled, (state, action) => {
 								state.user = action.payload.user;
 						})
-						.addCase(logout.fulfilled, (state, action) => {
-								console.log(action.payload)
+						.addCase(logout.fulfilled, (state) => {
 								localStorage.clear()
 								state.user = initialState.user
 						})

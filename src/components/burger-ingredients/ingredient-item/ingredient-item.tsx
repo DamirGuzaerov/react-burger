@@ -52,8 +52,8 @@ export const IngredientItem = ({ingredient, click}: IIngredientItemProps): JSX.E
 										<span className={`${ingredientItemStyles.name} text text_type_main-small`}>
                         {ingredient.name}
                     </span>
-										{count && count > 0 &&
-                        <Counter count={count} size="default" extraClass={ingredientItemStyles.counter}/>
+										{count! > 0 &&
+                        <Counter count={count!} size="default" extraClass={ingredientItemStyles.counter}/>
 										}
 								</section>
 						</Link>

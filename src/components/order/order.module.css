@@ -1,0 +1,24 @@
+.wrapper {
+    min-width: 640px;
+}
+
+.ingredientsList {
+    max-height: 312px;
+    overflow-y: auto;
+}
+
+.ingredient:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}

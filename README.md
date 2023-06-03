@@ -23,7 +23,7 @@
 
 ![Main page](https://code.s3.yandex.net/React/imageGallery_1.jpg)
 
-The main page of the space burger Stellar Burgers: here you can collect an order from any menu items via
+The main page of the space burger Stellar Burgers: here you can collect an orderDetails from any menu items via
 Drag\`n\`Drop
 
 ### Profile
@@ -43,13 +43,13 @@ Several pages responsible for user authorization (registration, login, password 
 
 #### Orders list page
 
-The order feed, which is updated in real time, with the ability to go to each of the receipts and see
-the details of the order
+The orderDetails feed, which is updated in real time, with the ability to go to each of the receipts and see
+the details of the orderDetails
 
 #### User orders list page
 
-The current user's order feed, which is updated in real time, with the ability to go to each of the receipts and view
-the order details, is available through the profile page
+The current user's orderDetails feed, which is updated in real time, with the ability to go to each of the receipts and view
+the orderDetails details, is available through the profile page
 
 
 

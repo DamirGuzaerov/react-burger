@@ -7,7 +7,7 @@ import {IConstructorIngredient} from "../../../utils/types";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 
 const ConstructorItems = (): JSX.Element => {
-		const ingredients = useAppSelector(state => state.burger_constructor.ingredients)
+		const ingredients = useAppSelector(state => state.burgerConstructor.ingredients)
 		const dispatch = useDispatch()
 		const moveIngredients = useCallback((dragIndex: number, hoverIndex: number) => {
 				dispatch(sortIngredients({toIndex: hoverIndex, fromIndex: dragIndex}))
