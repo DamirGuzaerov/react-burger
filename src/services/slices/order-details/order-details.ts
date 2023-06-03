@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {addOrder} from "../../thunks/order/order";
 import {IOrderDetails} from "../../../utils/types";
 
-interface IOrderDetailsSlice {
+export interface IOrderDetailsSlice {
 		orderDetails: IOrderDetails | null,
 		requested: boolean,
 		success: boolean,
