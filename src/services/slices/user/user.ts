@@ -7,7 +7,7 @@ interface IUserSlice {
 		isAuthChecked: boolean
 }
 
-const initialState: IUserSlice = {
+export const initialState: IUserSlice = {
 		user: null,
 		isAuthChecked: false,
 };
