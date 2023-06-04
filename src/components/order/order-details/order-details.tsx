@@ -1,7 +1,7 @@
 import orderDetailsStyles from './order-details.module.css'
 import orderAcceptedImage from '../../../images/orderAcceptedImage.png'
 import {useEffect} from "react";
-import {clearConstructor} from "../../../services/slices/constructor";
+import {clearConstructor} from "../../../services/slices/constructor/constructor";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 import {connect as connectUserOrders, disconnect} from "../../../services/slices/user-orders/actions";
@@ -28,10 +28,10 @@ const OrderDetails = (): JSX.Element => {
 
 		return (
 				<div className={orderDetailsStyles.container}>
-						<h1 className={`${orderDetailsStyles['order-id']} text text_type_digits-large mb-8 pt-4`}>
-								{!currentOrder &&
+						<h1 className={`${orderDetailsStyles['order-id']} text text_type_digits-large mb-8 pt-4`} data-testid='order_details-number'>
+								{!orderDetails.orderDetails &&
                     <img className={'button-loader pl-10'} src={loader} alt="loading..."/>}
-								{currentOrder && currentOrder.number}
+								{orderDetails && orderDetails.orderDetails?.order.number}
 						</h1>
 						<span className={'text text_type_main-default'}>Идентификатор заказа</span>
 						<img

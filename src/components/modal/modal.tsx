@@ -25,12 +25,12 @@ const Modal = ({title, onClose, children}: IModalProps): JSX.Element => {
 				ReactDOM.createPortal(
 						<ModalOverlay
 								handleClose={onClose}>
-								<div className={modalStyles['modal-wrapper']}>
+								<div data-testid='modal' className={modalStyles['modal-wrapper']}>
 										<header className={modalStyles.header}>
 												<div>
 														{title}
 												</div>
-												<div className={modalStyles['close-icon']}>
+												<div className={modalStyles['close-icon']} data-testid='close_button'>
 														<CloseIcon type="primary" onClick={onClose}/>
 												</div>
 										</header>

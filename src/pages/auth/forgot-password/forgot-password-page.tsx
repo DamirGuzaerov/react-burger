@@ -2,7 +2,7 @@ import forgotPasswordStyles from '../styles.module.css'
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Navigate, useLocation} from "react-router-dom";
 import {useForm} from "../../../utils/hooks/useForm";
-import {getPasswordResetCode} from "../../../services/thunks/password";
+import {getPasswordResetCode} from "../../../services/thunks/password/password";
 import loader from "../../../images/loader.svg";
 import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";

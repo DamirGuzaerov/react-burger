@@ -10,7 +10,7 @@ export interface UserOrdersStore {
 		totalToday: number
 }
 
-const initialState: UserOrdersStore = {
+export const initialState: UserOrdersStore = {
 		status: WebsocketStatus.OFFLINE,
 		connectionError: '',
 		orders: [],

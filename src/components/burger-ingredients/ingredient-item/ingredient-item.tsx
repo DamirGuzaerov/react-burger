@@ -29,6 +29,7 @@ export const IngredientItem = ({ingredient, click}: IIngredientItemProps): JSX.E
 		return (
 				<>
 						<Link
+								data-testid={ingredient._id}
 								key={ingredient._id}
 								to={`/ingredients/${ingredient._id}`}
 								state={{background: location}}

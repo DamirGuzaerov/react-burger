@@ -15,21 +15,21 @@ const IngredientDetails = (): JSX.Element => {
                     alt={ingredient.name}
                     className={'mb-2'}
                 />
-                <h2 className={'text text_type_main-medium mb-8'}>
+                <h2 className={'text text_type_main-medium mb-8'} data-testid='ingredient_details-name'>
                     {ingredient.name}
                 </h2>
                 <ul className={ingredientDetailsStyles['ingredient-details']}>
-                    <li className={ingredientDetailsStyles['ingredient-detail']}>
+                    <li className={ingredientDetailsStyles['ingredient-detail']} data-testid='ingredient_details-calories'>
                         <IngredientDetail title={'Калории,калл'} value={ingredient.calories}/>
                     </li>
-                    <li className={ingredientDetailsStyles['ingredient-detail']}>
-                        <IngredientDetail title={'Белки,г'} value={ingredient.proteins}/>
+                    <li className={ingredientDetailsStyles['ingredient-detail']} data-testid='ingredient_details-proteins'>
+                        <IngredientDetail title={'Белки,г'} value={ingredient.proteins}  />
                     </li>
-                    <li className={ingredientDetailsStyles['ingredient-detail']}>
-                        <IngredientDetail title={'Жиры,г'} value={ingredient.fat}/>
+                    <li className={ingredientDetailsStyles['ingredient-detail']} data-testid='ingredient_details-fat'>
+                        <IngredientDetail title={'Жиры,г'} value={ingredient.fat}  />
                     </li>
-                    <li className={ingredientDetailsStyles['ingredient-detail']}>
-                        <IngredientDetail title={'Углеводы,г'} value={ingredient.carbohydrates}/>
+                    <li className={ingredientDetailsStyles['ingredient-detail']} data-testid='ingredient_details-carbohydrates'>
+                        <IngredientDetail title={'Углеводы,г'} value={ingredient.carbohydrates} />
                     </li>
                 </ul>
             </div>)}

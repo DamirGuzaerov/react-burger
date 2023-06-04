@@ -8,8 +8,8 @@ import {useDisclosure} from "../../utils/hooks/useDisclosure";
 import ripple from '../../images/ripple.svg'
 import loader from '../../images/loader.svg'
 import {useDrop} from "react-dnd";
-import {addIngredient} from "../../services/slices/constructor";
-import {addOrder} from "../../services/thunks/order";
+import {addIngredient} from "../../services/slices/constructor/constructor";
+import {addOrder} from "../../services/thunks/order/order";
 import {useAppSelector} from "../../utils/hooks/useAppSelector";
 import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
 
@@ -45,6 +45,7 @@ const BurgerConstructor = (): JSX.Element => {
 		return (
 				<>
 						<section
+								data-testid='constructor'
 								ref={dropRef}
 								className={burgerConstructorStyles['burger-constructor']}>
 								<ol className={`${burgerConstructorStyles.list} pl-4`}>
@@ -88,6 +89,7 @@ const BurgerConstructor = (): JSX.Element => {
 												<CurrencyIcon type={'primary'}/>
 										</div>
 										<Button
+												data-testid='order-button'
 												htmlType="button"
 												type="primary"
 												size="medium"
@@ -103,7 +105,7 @@ const BurgerConstructor = (): JSX.Element => {
 								</div>
 								{failed && <p className={'text text_color_error text_type_main-default'}>Ошибка в заказе</p>}
 						</section>
-						{isOpen && requested &&
+						{isOpen &&
                 <Modal
                     onClose={close}>
                     <OrderDetails/>

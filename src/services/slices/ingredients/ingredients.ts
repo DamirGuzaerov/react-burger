@@ -1,8 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getBurgerIngredients} from "../thunks/ingredients";
-import {IIngredient} from "../../utils/types";
+import {getBurgerIngredients} from "../../thunks/ingredients/ingredients";
+import {IIngredient} from "../../../utils/types";
 
-interface IIngredientsSlice{
+export interface IIngredientsSlice{
     ingredients: IIngredient[],
     ingredientsRequested: boolean,
     ingredientsSucceed: boolean,
@@ -24,6 +24,7 @@ export const ingredientsSlice = createSlice({
         builder
             .addCase(getBurgerIngredients.fulfilled, (state, action) => {
                 state.ingredientsRequested = false
+                state.ingredientsSucceed = true
                 state.ingredients = action.payload.data
             })
             .addCase(getBurgerIngredients.pending, (state) => {

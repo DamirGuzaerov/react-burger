@@ -1,10 +1,12 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {request} from "../../utils/api";
+import {request} from "../../../utils/api";
 
 export const getBurgerIngredients = createAsyncThunk(
     'ingredients/getBurgerIngredientsStatus',
     async () => {
-        return await request('api/ingredients')
+        return await request('api/ingredients',{
+            method: 'GET'
+        })
     }
 )
 
