@@ -31,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "cypress open cache clear"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@types/uuid": "^9.0.1",
+    "cypress": "^12.13.0",
     "fetch-mock": "^9.11.0",
     "redux-mock-store": "^1.5.4"
   }
