@@ -11,7 +11,7 @@ interface IPasswordSlice {
 		passwordResetFailed: boolean,
 }
 
-const initialState: IPasswordSlice = {
+export const initialState: IPasswordSlice = {
 		passwordResetCodeRequested: false,
 		passwordResetCodeSucceed: false,
 		passwordResetCodeFailed: false,
