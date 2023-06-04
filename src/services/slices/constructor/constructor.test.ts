@@ -5,12 +5,17 @@ import reducer, {
 		clearConstructor,
 		IConstructorSlice
 } from './constructor'
+import {AnyAction} from "redux";
 
 describe('Redux constructor reducer', () => {
 		const initialState: IConstructorSlice = {
 				bun: null,
 				ingredients: []
 		}
+		it('should set initial state by default', function () {
+				const state = reducer(undefined, {} as AnyAction);
+				expect(state).toEqual({...initialState});
+		});
 
 		it('should add bun', function () {
 				const testIngredient = {type: 'bun', key: '1'}

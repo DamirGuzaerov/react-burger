@@ -1,8 +1,14 @@
 import {userOrdersReducer, initialState} from './reducer'
 import {wsClose, wsConnecting, wsError, wsMessage, wsOpen} from "./actions";
 import {IOrder, WebsocketStatus} from "../../../utils/types";
+import {AnyAction} from "redux";
 
 describe('Redux user orders reducer', () => {
+		it('should set initial state by default', function () {
+				const state = userOrdersReducer(undefined, {} as AnyAction);
+				expect(state).toEqual({...initialState});
+		});
+
 		it('should set ws status connecting when dispatch wsConnecting', function () {
 				const state = userOrdersReducer(initialState, wsConnecting);
 				expect(state).toEqual({...initialState, status: WebsocketStatus.CONNECTING});

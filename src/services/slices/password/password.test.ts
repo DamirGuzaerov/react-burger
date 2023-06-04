@@ -1,7 +1,13 @@
 import reducer, {initialState} from './password'
 import {getPasswordResetCode, resetPassword} from "../../thunks/password/password";
+import {AnyAction} from "redux";
 
 describe('Redux password reducer', () => {
+		it('should set initial state by default', function () {
+				const state = reducer(undefined, {} as AnyAction);
+				expect(state).toEqual({...initialState});
+		});
+
 		it('should set password reset code succeed true when getPasswordResetCode is fulfilled', function () {
 				const action = {type: getPasswordResetCode.fulfilled.type};
 				const state = reducer(initialState, action);

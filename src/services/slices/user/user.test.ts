@@ -1,7 +1,13 @@
 import reducer, {initialState} from './user'
 import {editUser, getUser, login, logout, register} from "../../thunks/user/user";
+import {AnyAction} from "redux";
 
 describe('Redux user reducer', () => {
+		it('should set initial state by default', function () {
+				const state = reducer(undefined, {} as AnyAction);
+				expect(state).toEqual({...initialState});
+		});
+
 		it('should set user and set auth checked true when login is fulfilled', function () {
 				const testUser = {name:'name'}
 

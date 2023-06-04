@@ -1,6 +1,7 @@
 import reducer, {IIngredientsSlice} from './ingredients'
 import {getBurgerIngredients} from "../../thunks/ingredients/ingredients";
 import {ingredientsMock} from "../../../mocks/ingredients-mock";
+import {AnyAction} from "redux";
 
 describe('Redux ingredients reducer', () => {
 		const initialState: IIngredientsSlice = {
@@ -9,6 +10,11 @@ describe('Redux ingredients reducer', () => {
 				ingredientsSucceed: false,
 				ingredientsFailed: false,
 		}
+
+		it('should set initial state by default', function () {
+				const state = reducer(undefined, {} as AnyAction);
+				expect(state).toEqual({...initialState});
+		});
 
 		it('should set fetching true when ingredient list is pending', function () {
 				const action = {type: getBurgerIngredients.pending.type};
