@@ -1,8 +1,7 @@
 import resetPasswordStyles from '../styles.module.css'
-import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
+import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Navigate, useLocation} from "react-router-dom";
 import {useForm} from "../../../utils/hooks/useForm";
-import {useDisclosure} from "../../../utils/hooks/useDisclosure";
 import {resetPassword} from "../../../services/thunks/password/password";
 import loader from "../../../images/loader.svg";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
@@ -11,7 +10,6 @@ import {FormEvent} from "react";
 
 export const ResetPasswordPage = () => {
 		const {form, change} = useForm({password: '', code: ''})
-		const {isOpen: hidden, toggle} = useDisclosure(false)
 		const location = useLocation()
 		const dispatch = useAppDispatch();
 		const {
@@ -42,14 +40,12 @@ export const ResetPasswordPage = () => {
 										</h3>
 								</header>
 								<div className={'mb-20'}>
-										<Input extraClass={'mb-6'}
-													 placeholder='Введите новый пароль'
-													 name='password'
-													 type={hidden ? 'password' : 'text'}
-													 icon={hidden ? 'HideIcon' : 'ShowIcon'}
-													 onIconClick={toggle}
-													 onChange={change}
-													 value={form.password}/>
+										<PasswordInput
+												onChange={change}
+												value={form.password}
+												name={'password'}
+												extraClass={'mb-6'}
+										/>
 										<Input extraClass={'mb-6'}
 													 placeholder='Введите код из письма'
 													 name='code'
