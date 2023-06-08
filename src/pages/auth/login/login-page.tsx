@@ -6,9 +6,11 @@ import {login} from "../../../services/thunks/user/user";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 import {FormEvent} from "react";
 import {IUser} from "../../../utils/types";
+import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 
 export const LoginPage = (): JSX.Element => {
     const {form, change} = useForm({email: '', password: ''})
+    const {loginFailed,loginError} = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
@@ -36,6 +38,9 @@ export const LoginPage = (): JSX.Element => {
                         name={'password'}
                         extraClass={'mb-6'}
                     />
+                    {loginFailed && <p className={'text text_type_main-default text_color_error mb-4'}>
+                        {loginError}
+                    </p>}
                     <Button className={'button button_size_medium button_type_primary'}
                             htmlType={'submit'}>
                         <span className={'text text_type_main-default'}>

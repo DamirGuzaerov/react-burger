@@ -6,9 +6,11 @@ import {register} from "../../../services/thunks/user/user";
 import {FormEvent} from "react";
 import {useAppDispatch} from "../../../utils/hooks/useAppDispatch";
 import {IUser} from "../../../utils/types";
+import {useAppSelector} from "../../../utils/hooks/useAppSelector";
 
 export const RegistrationPage = (): JSX.Element => {
     const {form, change} = useForm({name: '',email: '', password: ''})
+    const {registerFailed,registerError} = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -41,6 +43,9 @@ export const RegistrationPage = (): JSX.Element => {
                         name={'password'}
                         extraClass={'mb-6'}
                     />
+                    {registerFailed && <p className={'text text_type_main-default text_color_error mb-4'}>
+                        {registerError}
+                    </p>}
                     <Button className={'button button_size_medium button_type_primary'}
                             htmlType={'submit'}>
                         <span className={'text text_type_main-default'}>
