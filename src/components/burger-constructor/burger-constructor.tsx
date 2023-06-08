@@ -12,18 +12,25 @@ import {addIngredient} from "../../services/slices/constructor/constructor";
 import {addOrder} from "../../services/thunks/order/order";
 import {useAppSelector} from "../../utils/hooks/useAppSelector";
 import {useAppDispatch} from "../../utils/hooks/useAppDispatch";
+import {useNavigate} from "react-router-dom";
 
 const BurgerConstructor = (): JSX.Element => {
+		const {user} = useAppSelector(state => state.user)
+		const navigate = useNavigate()
 		const {bun, ingredients} = useAppSelector(state => state.burgerConstructor)
 		const {requested, failed} = useAppSelector(state => state.orderDetails)
 		const dispatch = useAppDispatch()
 		const {isOpen, open, close} = useDisclosure(false)
-		const handleClick = () => {
+		const handleOrderClick = () => {
 				if (bun === null) {
 						return
 				}
 				dispatch(addOrder({bun: bun, ingredients: ingredients}))
 				open()
+		}
+
+		const handleAuthClick = () => {
+				navigate('/login')
 		}
 
 		const totalPrice = useMemo(() => {
@@ -88,20 +95,34 @@ const BurgerConstructor = (): JSX.Element => {
                     </span>
 												<CurrencyIcon type={'primary'}/>
 										</div>
-										<Button
-												data-testid='order-button'
-												htmlType="button"
-												type="primary"
-												size="medium"
-												disabled={requested}
-												onClick={handleClick}
-										>
+										{user ?
+												<Button
+														data-testid='order-button'
+														htmlType="button"
+														type="primary"
+														size="medium"
+														disabled={requested}
+														onClick={handleOrderClick}
+												>
                 <span className={'text text_type_main-default'}>
                     Оформить заказ
                 </span>
-												{requested &&
-                            <img className={'button-loader pl-10'} src={loader} alt="loading..."/>}
-										</Button>
+														{requested &&
+                                <img className={'button-loader pl-10'} src={loader} alt="loading..."/>}
+												</Button> :
+												<Button
+														data-testid='order-button'
+														htmlType="button"
+														type="primary"
+														size="medium"
+														disabled={requested}
+														onClick={handleAuthClick}
+												>
+                <span className={'text text_type_main-default'}>
+                    Авторизоваться
+                </span>
+												</Button>
+										}
 								</div>
 								{failed && <p className={'text text_color_error text_type_main-default'}>Ошибка в заказе</p>}
 						</section>
